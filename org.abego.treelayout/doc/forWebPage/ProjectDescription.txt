@@ -6,7 +6,7 @@ The !TreeLayout creates tree layouts for arbitrary trees. It is not restricted t
 
 To use the !TreeLayout you mainly need to supply an instance of the !TreeLayout class with the nodes of the tree (including "children" links), together with the "size" of each node. In addition you can configure the layout by specifying parameters like "gap between levels" etc..
 
-Based on this information !TreeLayout creates a compact, nice looking layout. The layout has the following properties:
+Based on this information !TreeLayout creates a compact, nice looking layout. The layout has the following properties `[2]`:
   # The layout displays the hierarchical structure of the tree, i.e. the y-coordinate of a node is given by its level.
   # The edges do not cross each other and nodes on the same level have a minimal horizontal distance. 
   # The drawing of a subtree does not depend on its position in the tree, i.e. isomorphic subtrees are drawn identically up to translation. 
@@ -73,12 +73,6 @@ Based on Walker's algorithm `[1]` with enhancements suggested by Buchheim,  Jün
 
 In a benchmark the algorithm could layout trees with a speed of approx. 5 micro seconds per node. (Running on a 2.4 GHz Intel Core 2 Duo machine).
 
-`[1]` Walker JQ II. A node-positioning algorithm for general trees. <i>Software—Practice and Experience</i> 1990; <b>20</b>(7):685–705.
-
-`[2]` Buchheim C, Jünger M, Leipert S. Drawing rooted trees in linear time. <i>Software—Practice and Experience</i> 2006; <b>36</b>(6):651–665
-
-`[3]` Reingold EM, Tilford JS. Tidier drawings of trees. <i>IEEE Transactions on Software Engineering</i> 1981; <b>7</b>(2):223–228.
-
 ==Development==
 
 You may check out the !TreeLayout source code from the [http://code.google.com/p/treelayout/source/checkout TreeLayout SVN repository].
@@ -88,3 +82,11 @@ The projects contain configurations for the Eclipse and !NetBeans IDEs as well a
 ==License==
 
 abego !TreeLayout is distributed under a BSD license of [http://www.abego-software.de abego Software]. ([http://treelayout.googlecode.com/files/LICENSE.TXT License text])
+
+==References==
+
+`[1]` Walker JQ II. A node-positioning algorithm for general trees. <i>Software—Practice and Experience</i> 1990; <b>20</b>(7):685–705.
+
+`[2]` Buchheim C, Jünger M, Leipert S. Drawing rooted trees in linear time. <i>Software—Practice and Experience</i> 2006; <b>36</b>(6):651–665
+
+`[3]` Reingold EM, Tilford JS. Tidier drawings of trees. <i>IEEE Transactions on Software Engineering</i> 1981; <b>7</b>(2):223–228.

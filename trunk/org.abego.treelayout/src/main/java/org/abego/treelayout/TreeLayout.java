@@ -34,11 +34,14 @@ import static org.abego.treelayout.internal.util.Contract.checkArg;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.abego.treelayout.Configuration.AlignmentInLevel;
 import org.abego.treelayout.Configuration.Location;
@@ -728,5 +731,69 @@ public class TreeLayout<TreeNode> {
 		firstWalk(r, null);
 		calcSizeOfLevels(r, 0);
 		secondWalk(r, -getPrelim(r), 0, 0);
+	}
+
+	private void addUniqueNodes(Set<TreeNode> nodes, TreeNode newNode) {
+		if (!nodes.add(newNode)) {
+			throw new RuntimeException(String.format(
+					"Node used more than once in tree: %s", newNode));
+		}
+		for (TreeNode n : tree.getChildren(newNode)) {
+			addUniqueNodes(nodes,n);
+		}
+	}
+
+	/**
+	 * Check if the tree is a "valid" tree.
+	 * <p>
+	 * Typically you will use this method during development when you get an
+	 * unexpected layout from your trees.
+	 * <p>
+	 * The following checks are performed:
+	 * <ul>
+	 * <li>Each node must only occur once in the tree.</li>
+	 * </ul>
+	 */
+	public void checkTree() {
+		Set<TreeNode> nodes = new HashSet<TreeNode>();
+		
+		// Traverse the tree and check if each node is only used once.
+		addUniqueNodes(nodes,tree.getRoot());
+	}
+
+	private void dumpTree(PrintStream output, TreeNode node, int indent,
+			boolean includeNodeSize) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < indent; i++) {
+			sb.append("    ");
+		}
+
+		sb.append(node);
+		if (includeNodeSize) {
+			sb.append(" (size: ");
+			sb.append(getNodeWidth(node));
+
+			sb.append("x");
+			sb.append(getNodeHeight(node));
+
+			sb.append(")");
+		}
+		output.println(sb.toString());
+		for (TreeNode n : tree.getChildren(node)) {
+			dumpTree(output, n, indent + 1, includeNodeSize);
+		}
+	}
+
+	/**
+	 * Prints a dump of the tree to the given printStream, using the node's
+	 * "toString" method.
+	 * 
+	 * @param printStream
+	 * @param includeNodeSize
+	 *            when true the dump also includes the size of each node,
+	 *            otherwise not.
+	 */
+	public void dumpTree(PrintStream printStream, boolean includeNodeSize) {
+		dumpTree(printStream,tree.getRoot(),0, includeNodeSize);
 	}
 }

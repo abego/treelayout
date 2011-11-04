@@ -45,6 +45,7 @@ import java.util.Set;
 
 import org.abego.treelayout.Configuration.AlignmentInLevel;
 import org.abego.treelayout.Configuration.Location;
+import org.abego.treelayout.internal.util.java.lang.string.StringUtil;
 
 /**
  * Implements the actual tree layout algorithm.
@@ -733,6 +734,9 @@ public class TreeLayout<TreeNode> {
 		secondWalk(r, -getPrelim(r), 0, 0);
 	}
 
+	// ------------------------------------------------------------------------
+	// checkTree
+
 	private void addUniqueNodes(Set<TreeNode> nodes, TreeNode newNode) {
 		if (!nodes.add(newNode)) {
 			throw new RuntimeException(String.format(
@@ -761,39 +765,94 @@ public class TreeLayout<TreeNode> {
 		addUniqueNodes(nodes,tree.getRoot());
 	}
 
+	// ------------------------------------------------------------------------
+	// dumpTree
+
 	private void dumpTree(PrintStream output, TreeNode node, int indent,
-			boolean includeNodeSize) {
+			DumpConfiguration dumpConfiguration) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < indent; i++) {
-			sb.append("    ");
+			sb.append(dumpConfiguration.indent);
 		}
 
-		sb.append(node);
-		if (includeNodeSize) {
+		if (dumpConfiguration.includeObjectToString) {
+			sb.append("[");
+			sb.append(node.getClass().getName() + "@"
+					+ Integer.toHexString(node.hashCode()));
+			if (node.hashCode() != System.identityHashCode(node)) {
+				sb.append("/identityHashCode:");
+				sb.append(Integer.toHexString(System.identityHashCode(node)));
+			}
+			sb.append("]");
+		}
+		
+		sb.append(StringUtil.quote(node != null ? node.toString() : null));
+		
+		if (dumpConfiguration.includeNodeSize) {
 			sb.append(" (size: ");
 			sb.append(getNodeWidth(node));
-
 			sb.append("x");
 			sb.append(getNodeHeight(node));
-
 			sb.append(")");
 		}
+		
 		output.println(sb.toString());
+		
 		for (TreeNode n : tree.getChildren(node)) {
-			dumpTree(output, n, indent + 1, includeNodeSize);
+			dumpTree(output, n, indent + 1, dumpConfiguration);
 		}
 	}
 
+	public static class DumpConfiguration {
+		/**
+		 * The text used to indent the output per level.
+		 */
+		public final String indent;
+		/**
+		 * When true the dump also includes the size of each node, otherwise
+		 * not.
+		 */
+		public final boolean includeNodeSize;
+		/**
+		 * When true, the text as returned by {@link Object#toString()}, is
+		 * included in the dump, in addition to the text returned by the
+		 * possibly overridden toString method of the node. When the hashCode
+		 * method is overridden the output will also include the
+		 * "identityHashCode".
+		 */
+		public final boolean includeObjectToString;
+
+		/**
+		 * 
+		 * @param indent [default: "    "]
+		 * @param includeNodeSize [default: false]
+		 * @param includePointer [default: false]
+		 */
+		public DumpConfiguration(String indent, boolean includeNodeSize,
+				boolean includePointer) {
+			this.indent = indent;
+			this.includeNodeSize = includeNodeSize;
+			this.includeObjectToString = includePointer;
+		}
+		
+		public DumpConfiguration() {
+			this("    ",false,false);
+		}
+	}
+	
 	/**
 	 * Prints a dump of the tree to the given printStream, using the node's
 	 * "toString" method.
 	 * 
 	 * @param printStream
-	 * @param includeNodeSize
-	 *            when true the dump also includes the size of each node,
-	 *            otherwise not.
+	 * @param dumpConfiguration
+	 *            [default: new DumpConfiguration()]
 	 */
-	public void dumpTree(PrintStream printStream, boolean includeNodeSize) {
-		dumpTree(printStream,tree.getRoot(),0, includeNodeSize);
+	public void dumpTree(PrintStream printStream, DumpConfiguration dumpConfiguration) {
+		dumpTree(printStream,tree.getRoot(),0, dumpConfiguration);
+	}
+
+	public void dumpTree(PrintStream printStream) {
+		dumpTree(printStream,new DumpConfiguration());
 	}
 }

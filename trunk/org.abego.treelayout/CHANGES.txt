@@ -11,6 +11,7 @@ CHANGES
 
 
 2011-11-04
+
 *	Bugfix: Cannot handle nodes with redefined equals/hashCode 
 	- use identify instead of equality when checking nodes
 * 	extend TreeLayout.dumpTree to also include the object's hashCode 

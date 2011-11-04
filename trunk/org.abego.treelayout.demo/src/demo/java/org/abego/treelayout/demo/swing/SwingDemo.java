@@ -69,15 +69,28 @@ public class SwingDemo {
 		dialog.setVisible(true);
 	}
 
+	private static TreeForTreeLayout<TextInBox> getSampleTree(String treeName) {
+		TreeForTreeLayout<TextInBox> tree;
+		if (treeName.equals("2")) {
+			tree = SampleTreeFactory.createSampleTree2();
+		} else if (treeName.equals("")) {
+			tree = SampleTreeFactory.createSampleTree();
+		} else {
+			throw new RuntimeException(String.format("Invalid tree name: '%s'",
+					treeName));
+		}
+		return tree;
+	}
+
 	/**
 	 * Shows a dialog with a tree in a layout created by {@link TreeLayout},
 	 * using the Swing component {@link TextInBoxTreePane}.
 	 */
 	public static void main(String[] args) {
 		// get the sample tree
-		TreeForTreeLayout<TextInBox> tree = SampleTreeFactory
-				.createSampleTree();
-
+		String treeName = (args.length > 0) ? args[0] : "";
+		TreeForTreeLayout<TextInBox> tree = getSampleTree(treeName);
+				
 		// setup the tree layout configuration
 		double gapBetweenLevels = 50;
 		double gapBetweenNodes = 10;

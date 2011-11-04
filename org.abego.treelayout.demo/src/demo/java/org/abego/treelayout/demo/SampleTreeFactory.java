@@ -61,4 +61,40 @@ public class SampleTreeFactory {
 		tree.addChild(n2, n2_1);
 		return tree;
 	}
+	
+	/**
+	 * Returns a "Sample" tree with {@link TextInBox} items as nodes.
+	 */
+	public static TreeForTreeLayout<TextInBox> createSampleTree2() {
+		TextInBox root = new TextInBox("prog", 40, 20);
+		TextInBox n1 = new TextInBox("classDef", 65, 20);
+		TextInBox n1_1 = new TextInBox("class", 50, 20);
+		TextInBox n1_2 = new TextInBox("T", 20, 20);
+		TextInBox n1_3 = new TextInBox("{", 20, 20);
+		TextInBox n1_4 = new TextInBox("member", 60, 20);
+		TextInBox n1_5 = new TextInBox("member", 60, 20);
+		TextInBox n1_5_1 = new TextInBox("<ERROR:int>", 90, 20);
+		TextInBox n1_6 = new TextInBox("member", 60, 20);
+		TextInBox n1_6_1 = new TextInBox("int", 30, 20);
+		TextInBox n1_6_2 = new TextInBox("i", 20, 20);
+		TextInBox n1_6_3 = new TextInBox(";", 20, 20);
+		TextInBox n1_7 = new TextInBox("}", 20, 20);
+		         
+		         
+		DefaultTreeForTreeLayout<TextInBox> tree = new DefaultTreeForTreeLayout<TextInBox>(
+				root);
+		tree.addChild(root, n1);
+		tree.addChild(n1, n1_1);
+		tree.addChild(n1, n1_2);
+		tree.addChild(n1, n1_3);
+		tree.addChild(n1, n1_4);
+		tree.addChild(n1, n1_5);
+		tree.addChild(n1_5, n1_5_1);
+		tree.addChild(n1, n1_6);
+		tree.addChild(n1_6,n1_6_1);
+		tree.addChild(n1_6,n1_6_2);
+		tree.addChild(n1_6,n1_6_3);
+		tree.addChild(n1, n1_7);
+		return tree;
+	}
 }

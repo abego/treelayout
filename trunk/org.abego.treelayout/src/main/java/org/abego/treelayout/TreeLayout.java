@@ -36,12 +36,10 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import org.abego.treelayout.Configuration.AlignmentInLevel;
 import org.abego.treelayout.Configuration.Location;
@@ -311,14 +309,14 @@ public class TreeLayout<TreeNode> {
 	// ------------------------------------------------------------------------
 	// The Algorithm
 
-	private final Map<TreeNode, Double> mod = new HashMap<TreeNode, Double>();
-	private final Map<TreeNode, TreeNode> thread = new HashMap<TreeNode, TreeNode>();
-	private final Map<TreeNode, Double> prelim = new HashMap<TreeNode, Double>();
-	private final Map<TreeNode, Double> change = new HashMap<TreeNode, Double>();
-	private final Map<TreeNode, Double> shift = new HashMap<TreeNode, Double>();
-	private final Map<TreeNode, TreeNode> ancestor = new HashMap<TreeNode, TreeNode>();
-	private final Map<TreeNode, Integer> number = new HashMap<TreeNode, Integer>();
-	private final Map<TreeNode, Point2D> positions = new HashMap<TreeNode, Point2D>();
+	private final Map<TreeNode, Double> mod = new IdentityHashMap<TreeNode, Double>();
+	private final Map<TreeNode, TreeNode> thread = new IdentityHashMap<TreeNode, TreeNode>();
+	private final Map<TreeNode, Double> prelim = new IdentityHashMap<TreeNode, Double>();
+	private final Map<TreeNode, Double> change = new IdentityHashMap<TreeNode, Double>();
+	private final Map<TreeNode, Double> shift = new IdentityHashMap<TreeNode, Double>();
+	private final Map<TreeNode, TreeNode> ancestor = new IdentityHashMap<TreeNode, TreeNode>();
+	private final Map<TreeNode, Integer> number = new IdentityHashMap<TreeNode, Integer>();
+	private final Map<TreeNode, Point2D> positions = new IdentityHashMap<TreeNode, Point2D>();
 
 	private double getMod(TreeNode node) {
 		Double d = mod.get(node);
@@ -693,7 +691,7 @@ public class TreeLayout<TreeNode> {
 	 */
 	public Map<TreeNode, Rectangle2D.Double> getNodeBounds() {
 		if (nodeBounds == null) {
-			nodeBounds = new HashMap<TreeNode, Rectangle2D.Double>();
+			nodeBounds = new IdentityHashMap<TreeNode, Rectangle2D.Double>();
 			for (Entry<TreeNode, Point2D> entry : positions.entrySet()) {
 				TreeNode node = entry.getKey();
 				Point2D pos = entry.getValue();
@@ -737,8 +735,8 @@ public class TreeLayout<TreeNode> {
 	// ------------------------------------------------------------------------
 	// checkTree
 
-	private void addUniqueNodes(Set<TreeNode> nodes, TreeNode newNode) {
-		if (!nodes.add(newNode)) {
+	private void addUniqueNodes(Map<TreeNode,TreeNode> nodes, TreeNode newNode) {
+		if (nodes.put(newNode,newNode) != null) {
 			throw new RuntimeException(String.format(
 					"Node used more than once in tree: %s", newNode));
 		}
@@ -759,7 +757,7 @@ public class TreeLayout<TreeNode> {
 	 * </ul>
 	 */
 	public void checkTree() {
-		Set<TreeNode> nodes = new HashSet<TreeNode>();
+		Map<TreeNode,TreeNode> nodes = new IdentityHashMap<TreeNode,TreeNode>();
 		
 		// Traverse the tree and check if each node is only used once.
 		addUniqueNodes(nodes,tree.getRoot());

@@ -40,9 +40,15 @@ import static org.abego.treelayout.internal.util.Contract.*;
  * 
  */
 public class StringTreeNode {
+	private boolean useTextForEquals;
+	
+	public StringTreeNode(String text, boolean useTextForEquals) {
+		this.text = text;
+		this.useTextForEquals = useTextForEquals;
+	}
 
 	public StringTreeNode(String text) {
-		this.text = text;
+		this(text, false);
 	}
 
 	// ------------------------------------------------------------------------
@@ -54,11 +60,19 @@ public class StringTreeNode {
 		return children;
 	}
 
-	public void addChild(StringTreeNode child) {
-		child.setParent(this);
+	/**
+	 * @param child
+	 * @param checkConsistency [default: true]
+	 */
+	public void addChild(StringTreeNode child, boolean checkConsistency) {
+		child.setParent(this, checkConsistency);
 		this.getChildren().add(child);
 	}
 
+	public void addChild(StringTreeNode child) {
+		addChild(child, true);
+	}
+	
 	public void addChildren(StringTreeNode... children) {
 		for (StringTreeNode child : children) {
 			addChild(child);
@@ -70,8 +84,10 @@ public class StringTreeNode {
 
 	private StringTreeNode parent;
 
-	private void setParent(StringTreeNode parent) {
-		checkState(this.parent == null, "parent already defined");
+	private void setParent(StringTreeNode parent, boolean checkConsistency) {
+		if (checkConsistency) {
+			checkState(this.parent == null, "parent already defined");
+		}
 
 		this.parent = parent;
 	}
@@ -89,6 +105,23 @@ public class StringTreeNode {
 		return text;
 	}
 
+	// ------------------------------------------------------------------------
+	// equals/hashCode
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (useTextForEquals && obj instanceof StringTreeNode) {
+			return text.equals(((StringTreeNode) obj).getText());
+		}
+		return super.equals(obj);
+	}
+
+	@Override
+	public int hashCode() {
+		return useTextForEquals ? text.hashCode() : super.hashCode();
+	}
+	
+	
 	// ------------------------------------------------------------------------
 	// toString
 

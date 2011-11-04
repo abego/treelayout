@@ -35,6 +35,8 @@ import static org.junit.Assert.fail;
 import java.awt.Dimension;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -283,6 +285,14 @@ public class TreeLayoutTest {
 				newTree("n1\n(first node)"), //
 				newTree("n2"), //
 				newTree("n3\n(last node)"));
+		return root;
+	}
+
+	public static StringTreeNode createSampleTree_DuplicateNode() {
+		StringTreeNode child = newTree("n1");
+		StringTreeNode root = newTree("root");
+		root.addChild(child, false);
+		root.addChild(child, false);
 		return root;
 	}
 
@@ -577,4 +587,60 @@ public class TreeLayoutTest {
 		assertEquals(200, layout.getBounds().getWidth(), 0.0);
 		assertEquals(70, layout.getBounds().getHeight(), 0.0);
 	}
+	
+	@Test
+	public void testCheckTree_fail() {
+		StringTreeNode root = createSampleTree_DuplicateNode();
+		TreeLayout<StringTreeNode> layout = layout(root);
+		try {
+			layout.checkTree();
+			fail("Exception expected");
+		} catch (Exception ex) {
+			assertEquals("Node used more than once in tree: n1", ex.getMessage());
+		}
+	}
+	
+	@Test
+	public void testCheckTree_success() {
+		StringTreeNode root = createSampleTree_1();
+		TreeLayout<StringTreeNode> layout = layout(root);
+		layout.checkTree();
+	}
+	
+	@Test
+	public void testDumpTree() {
+		StringTreeNode root = createSampleTree_1();
+		TreeLayout<StringTreeNode> layout = layout(root);
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		PrintStream printStream = new PrintStream(out);
+		layout.dumpTree(printStream, new TreeLayout.DumpConfiguration("- ",
+				true, false));
+		String s = out.toString();
+		assertEquals(//
+				"\"root\" (size: 60.0x20.0)\n" + //
+						"- \"n1\" (size: 60.0x20.0)\n" + //
+						"- - \"n1.1\" (size: 60.0x20.0)\n" + //
+						"- - \"n1.2\" (size: 60.0x20.0)\n" + //
+						"- \"n2\" (size: 60.0x20.0)\n" + //
+						"- - \"n2.1\" (size: 60.0x20.0)\n", s);
+	}
+	
+	@Test
+	public void testBug_CannotHandleNodesWithRedefinedEquals() {
+		StringTreeNode root = new StringTreeNode("root",true);
+		// add two different nodes that "equal" (because the text is used for
+		// "equals" checks) but not identical.
+		root.addChild(new StringTreeNode("n1",true));
+		root.addChild(new StringTreeNode("n1",true));
+		
+		// In version 1.0 this failed because "equality" was used when checking
+		// nodes in the tree, not identity.
+		TreeLayout<StringTreeNode> layout = layout(root, new DefaultConfiguration<StringTreeNode>(
+				10, 10));
+		assertEqualsToString(
+				"root @ 35,0 (60x20)\nn1 @ 0,30 (60x20)\nn1 @ 70,30 (60x20)\n",
+				layout);
+	}
+	
+	
 }

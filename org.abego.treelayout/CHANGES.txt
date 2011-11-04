@@ -1,0 +1,28 @@
+abego TreeLayout - Efficiently create compact tree layouts
+
+http://code.google.com/p/treelayout/
+
+Udo Borkowski, ub at abego org
+abego Software GmbH, Germany
+
+CHANGES
+
+
+
+
+2011-11-04
+*	Bugfix: Cannot handle nodes with redefined equals/hashCode 
+	- use identify instead of equality when checking nodes
+* 	extend TreeLayout.dumpTree to also include the object's hashCode 
+*	add TreeLayout.DumpConfiguration
+*	(demo) add sample tree to Swing demo ("ANTLR" sample)
+
+2011-11-03
+
+* 	add checkTree and dumpTree to TreeLayout, to support debugging
+
+
+-----------------------------------------------------------------------------
+Release 1.0 (2011-10-17)
+ 
+Initial release

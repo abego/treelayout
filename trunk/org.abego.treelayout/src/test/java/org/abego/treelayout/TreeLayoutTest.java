@@ -53,6 +53,8 @@ import org.junit.Test;
  * 
  */
 public class TreeLayoutTest {
+	private static final String NL = System.getProperty("line.separator");
+	
 	private static StringTreeNode newTree(String text,
 			StringTreeNode... children) {
 		StringTreeNode root = new StringTreeNode(text);
@@ -617,12 +619,12 @@ public class TreeLayoutTest {
 				true, false));
 		String s = out.toString();
 		assertEquals(//
-				"\"root\" (size: 60.0x20.0)\n" + //
-						"- \"n1\" (size: 60.0x20.0)\n" + //
-						"- - \"n1.1\" (size: 60.0x20.0)\n" + //
-						"- - \"n1.2\" (size: 60.0x20.0)\n" + //
-						"- \"n2\" (size: 60.0x20.0)\n" + //
-						"- - \"n2.1\" (size: 60.0x20.0)\n", s);
+				"\"root\" (size: 60.0x20.0)" + NL + //
+						"- \"n1\" (size: 60.0x20.0)" + NL + //
+						"- - \"n1.1\" (size: 60.0x20.0)" + NL + //
+						"- - \"n1.2\" (size: 60.0x20.0)" + NL + //
+						"- \"n2\" (size: 60.0x20.0)" + NL +//
+						"- - \"n2.1\" (size: 60.0x20.0)" + NL, s);
 	}
 	
 	@Test

@@ -9,23 +9,30 @@ abego Software GmbH, Germany
 
 CHANGES
 =============================================================================
+2011-11-07
 
+*	New: TreeLayout can either use "equality" (equals(...), the default) or 
+	"identity" (==) when comparing tree nodes 
+	
+	- consider using "identity" when your node objects override "equals" and 
+	  two nodes in the tree may be "equal" according to the new equals definition.
+	- "Identity" can be selected through a new parameter in the TreeLayout constructor.
+	
 2011-11-05
 
-*	Make TreeLayoutTest.testDumpTree platform independent ("line.separator")
+*	Bugfix: Make TreeLayoutTest.testDumpTree platform independent ("line.separator")
 	- thanks to Martin Skurla for reporting
 
 2011-11-04
 
 *	Bugfix: Cannot handle nodes with redefined equals/hashCode 
 	- use identity instead of equality when checking nodes
-* 	extend TreeLayout.dumpTree to also include the object's hashCode 
-*	add TreeLayout.DumpConfiguration
-*	(demo) add sample tree to Swing demo ("ANTLR" sample)
+* 	Enhancement: extend TreeLayout.dumpTree to also include the object's hashCode 
+*	New: add TreeLayout.DumpConfiguration
 
 2011-11-03
 
-* 	add checkTree and dumpTree to TreeLayout, to support debugging
+* 	New: add checkTree and dumpTree to TreeLayout, to support debugging
 
 -----------------------------------------------------------------------------
 Release 1.0 (2011-10-17)

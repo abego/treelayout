@@ -635,13 +635,28 @@ public class TreeLayoutTest {
 		root.addChild(new StringTreeNode("n1",true));
 		root.addChild(new StringTreeNode("n1",true));
 		
-		// In version 1.0 this failed because "equality" was used when checking
-		// nodes in the tree, not identity.
-		TreeLayout<StringTreeNode> layout = layout(root, new DefaultConfiguration<StringTreeNode>(
-				10, 10));
+		// When using "equality" to check nodes in the tree the tree is not
+		// layout properly as the "same" node (according to "equals") is in the
+		// tree twice.
+		StringTreeAsTreeForTreeLayout treeForTreeLayout1 = new StringTreeAsTreeForTreeLayout(
+				root);
+		TreeLayout<StringTreeNode> layout1 = new TreeLayout<StringTreeNode>(
+				treeForTreeLayout1, new FixedNodeExtentProvider<StringTreeNode>(60, 20), new DefaultConfiguration<StringTreeNode>(
+								10, 10));
+		assertEqualsToString(
+				"root @ 0,0 (60x20)\nn1 @ 0,30 (60x20)\nn1 @ 0,30 (60x20)\n",
+				layout1);
+
+		// When using "identity" instead (defined by parameter of TreeLayout
+		// constructor) the tree layout is fine.
+		StringTreeAsTreeForTreeLayout treeForTreeLayout2 = new StringTreeAsTreeForTreeLayout(
+				root);
+		TreeLayout<StringTreeNode> layout2 = new TreeLayout<StringTreeNode>(
+				treeForTreeLayout2, new FixedNodeExtentProvider<StringTreeNode>(60, 20), new DefaultConfiguration<StringTreeNode>(
+								10, 10),true);
 		assertEqualsToString(
 				"root @ 35,0 (60x20)\nn1 @ 0,30 (60x20)\nn1 @ 70,30 (60x20)\n",
-				layout);
+				layout2);
 	}
 	
 	

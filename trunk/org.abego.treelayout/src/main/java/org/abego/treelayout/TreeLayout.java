@@ -36,6 +36,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
@@ -308,15 +309,17 @@ public class TreeLayout<TreeNode> {
 
 	// ------------------------------------------------------------------------
 	// The Algorithm
+	
+	private final boolean useIdentity;
 
-	private final Map<TreeNode, Double> mod = new IdentityHashMap<TreeNode, Double>();
-	private final Map<TreeNode, TreeNode> thread = new IdentityHashMap<TreeNode, TreeNode>();
-	private final Map<TreeNode, Double> prelim = new IdentityHashMap<TreeNode, Double>();
-	private final Map<TreeNode, Double> change = new IdentityHashMap<TreeNode, Double>();
-	private final Map<TreeNode, Double> shift = new IdentityHashMap<TreeNode, Double>();
-	private final Map<TreeNode, TreeNode> ancestor = new IdentityHashMap<TreeNode, TreeNode>();
-	private final Map<TreeNode, Integer> number = new IdentityHashMap<TreeNode, Integer>();
-	private final Map<TreeNode, Point2D> positions = new IdentityHashMap<TreeNode, Point2D>();
+	private final Map<TreeNode, Double> mod;
+	private final Map<TreeNode, TreeNode> thread;
+	private final Map<TreeNode, Double> prelim;
+	private final Map<TreeNode, Double> change;
+	private final Map<TreeNode, Double> shift;
+	private final Map<TreeNode, TreeNode> ancestor;
+	private final Map<TreeNode, Integer> number;
+	private final Map<TreeNode, Point2D> positions;
 
 	private double getMod(TreeNode node) {
 		Double d = mod.get(node);
@@ -691,7 +694,8 @@ public class TreeLayout<TreeNode> {
 	 */
 	public Map<TreeNode, Rectangle2D.Double> getNodeBounds() {
 		if (nodeBounds == null) {
-			nodeBounds = new IdentityHashMap<TreeNode, Rectangle2D.Double>();
+			nodeBounds = this.useIdentity ? new IdentityHashMap<TreeNode, Rectangle2D.Double>()
+					: new HashMap<TreeNode, Rectangle2D.Double>();
 			for (Entry<TreeNode, Point2D> entry : positions.entrySet()) {
 				TreeNode node = entry.getKey();
 				Point2D pos = entry.getValue();
@@ -713,14 +717,40 @@ public class TreeLayout<TreeNode> {
 	 * <p>
 	 * In addition to the tree the {@link NodeExtentProvider} and the
 	 * {@link Configuration} must be given.
+	 * 
+	 * @param useIdentity
+	 *            [default: false] when true, identity ("==") is used instead of
+	 *            equality ("equals(...)") when checking nodes. Within a tree
+	 *            each node must only be once (using this check).
 	 */
 	public TreeLayout(TreeForTreeLayout<TreeNode> tree,
 			NodeExtentProvider<TreeNode> nodeExtentProvider,
-			Configuration<TreeNode> configuration) {
+			Configuration<TreeNode> configuration, boolean useIdentity) {
 		this.tree = tree;
 		this.nodeExtentProvider = nodeExtentProvider;
 		this.configuration = configuration;
+		this.useIdentity = useIdentity;
 
+		if (this.useIdentity) {
+			this.mod = new IdentityHashMap<TreeNode, Double>();
+			this.thread = new IdentityHashMap<TreeNode, TreeNode>();
+			this.prelim = new IdentityHashMap<TreeNode, Double>();
+			this.change = new IdentityHashMap<TreeNode, Double>();
+			this.shift = new IdentityHashMap<TreeNode, Double>();
+			this.ancestor = new IdentityHashMap<TreeNode, TreeNode>();
+			this.number = new IdentityHashMap<TreeNode, Integer>();
+			this.positions = new IdentityHashMap<TreeNode, Point2D>();
+		} else {
+			this.mod = new HashMap<TreeNode, Double>();
+			this.thread = new HashMap<TreeNode, TreeNode>();
+			this.prelim = new HashMap<TreeNode, Double>();
+			this.change = new HashMap<TreeNode, Double>();
+			this.shift = new HashMap<TreeNode, Double>();
+			this.ancestor = new HashMap<TreeNode, TreeNode>();
+			this.number = new HashMap<TreeNode, Integer>();
+			this.positions = new HashMap<TreeNode, Point2D>();
+		}
+		
 		// No need to explicitly set mod, thread and ancestor as their getters
 		// are taking care of the initial values. This avoids a full tree walk
 		// through and saves some memory as no entries are added for
@@ -731,7 +761,13 @@ public class TreeLayout<TreeNode> {
 		calcSizeOfLevels(r, 0);
 		secondWalk(r, -getPrelim(r), 0, 0);
 	}
-
+	
+	public TreeLayout(TreeForTreeLayout<TreeNode> tree,
+			NodeExtentProvider<TreeNode> nodeExtentProvider,
+			Configuration<TreeNode> configuration) {
+		this(tree, nodeExtentProvider, configuration, false);
+	}
+	
 	// ------------------------------------------------------------------------
 	// checkTree
 
@@ -757,7 +793,8 @@ public class TreeLayout<TreeNode> {
 	 * </ul>
 	 */
 	public void checkTree() {
-		Map<TreeNode,TreeNode> nodes = new IdentityHashMap<TreeNode,TreeNode>();
+		Map<TreeNode, TreeNode> nodes = this.useIdentity ? new IdentityHashMap<TreeNode, TreeNode>()
+				:new HashMap<TreeNode,TreeNode>();
 		
 		// Traverse the tree and check if each node is only used once.
 		addUniqueNodes(nodes,tree.getRoot());

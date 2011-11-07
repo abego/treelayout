@@ -1,0 +1,17 @@
+abego TreeLayout NetBeans
+ - The integration of abego TreeLayout into NetBeans Visual Library API
+=============================================================================
+
+http://code.google.com/p/treelayout/
+
+Udo Borkowski, ub at abego org
+abego Software GmbH, Germany
+
+
+CHANGES
+=============================================================================
+
+-----------------------------------------------------------------------------
+Release 1.0 (2011-10-17)
+ 
+Initial release

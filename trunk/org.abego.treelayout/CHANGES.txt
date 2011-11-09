@@ -9,6 +9,10 @@ abego Software GmbH, Germany
 
 CHANGES
 =============================================================================
+0211-11-09
+
+*	New: added support for Maven (ms)
+
 2011-11-07
 
 *	New: TreeLayout can either use "equality" (equals(...), the default) or 

@@ -10,6 +10,10 @@ abego Software GmbH, Germany
 CHANGES
 =============================================================================
 
+2011-11-16
+
+*	New: added support for Maven
+
 2011-11-04
 
 *	New: add a (pseudo)  "ANTLR" sample tree to Swing demo

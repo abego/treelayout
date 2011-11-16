@@ -6,7 +6,7 @@
             <name>org.abego.treelayout.demo</name>
             <explicit-platform explicit-source-supported="true"/>
             <source-roots>
-                <root id="src.dir" name="src/demo/java"/>
+                <root id="src.java.dir"/>
             </source-roots>
             <test-roots/>
         </data>

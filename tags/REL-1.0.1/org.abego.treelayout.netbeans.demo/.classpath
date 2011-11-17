@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="**/.DS_Store|**/.svn/*" kind="src" path="src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="THIRDPARTY/netbeans/org-openide-util-8.17.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.abego.treelayout.core"/>
+	<classpathentry kind="var" path="THIRDPARTY/netbeans/org-netbeans-api-visual-2.29.jar"/>
+	<classpathentry kind="var" path="THIRDPARTY/netbeans/org-openide-util-lookup-8.10.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.abego.treelayout.netbeans"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

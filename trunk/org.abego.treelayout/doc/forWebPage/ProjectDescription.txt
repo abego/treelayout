@@ -1,6 +1,6 @@
-Efficient and customizable !TreeLayout Algorithm in Java
+*abego !TreeLayout - Efficient and Customizable Tree Layout Algorithm in Java*
 
-==Overview==
+=Overview=
 
 The !TreeLayout creates tree layouts for arbitrary trees. It is not restricted to a specific output or format, but can be used for any kind of two dimensional diagram. Examples are Swing based components, SVG files, and many more. This is possible because !TreeLayout separates the layout of a tree from the actual rendering.
 
@@ -17,17 +17,10 @@ Here an example tree layout:
 
 http://treelayout.googlecode.com/files/TreeGraphView-Figure7.png
 
-==Content==
-  * [#Overview Overview]
-  * [#Content Content]
-  * [#Download_and_Installation Download and Installation]
-  * [#NetBeans_and_abego_TreeLayout NetBeans and abego TreeLayout]
-  * [#Documentation Documentation]
-  * [#Algorithm_Performance Algorithm Performance]
-  * [#Development Development]
-  * [#License License]
+=Content=
+<wiki:toc/>
 
-==Download and Installation==
+=Download and Installation=
 
   * *Sources*: http://code.google.com/p/treelayout/source/browse/
   * *JAR files*: 
@@ -47,7 +40,14 @@ http://treelayout.googlecode.com/files/TreeGraphView-Figure7.png
         ...
     </dependencies>
 }}}
-==!NetBeans and abego !TreeLayout==
+
+=Development=
+
+You may check out the !TreeLayout source code from the [http://code.google.com/p/treelayout/source/checkout TreeLayout SVN repository].
+
+The projects contain configurations for the Eclipse and !NetBeans IDEs as well as ANT scripts to build them. Maven is also supported.
+
+=!NetBeans and abego !TreeLayout=
 
 The !NetBeans Visual API already includes an algorithm to layout trees (and graphs in general). However the default implementation of !NetBeans does not always generate layouts as compact as the abego !TreeLayout implementation:
 || *Layout using abego !TreeLayout * || *Layout using !NetBeans' default  Tree !GraphLayout* ||
@@ -74,7 +74,7 @@ SceneLayout sceneLayout = LayoutFactory.createSceneGraphLayout(scene, graphLayou
 ...
 }}}
 
-==Documentation==
+=Documentation=
 
 For detailed documentation see the javaDoc in the source code and this [http://treelayout.googlecode.com/files/abegoTreeLayout.pdf pdf document].
 
@@ -85,12 +85,6 @@ In addition you may also find the example code helpful. It is included in the "d
 Based on Walker's algorithm `[1]` with enhancements suggested by Buchheim,  Jünger, and Leipert `[2]` the software builds tree layouts in linear time. I.e. even trees with many nodes are built fast. Other than with the Reingold–Tilford algorithm `[3]` one is not limited to binary trees.
 
 In a benchmark the algorithm could layout trees with a speed of approx. 5 micro seconds per node. (Running on a 2.4 GHz Intel Core 2 Duo machine).
-
-==Development==
-
-You may check out the !TreeLayout source code from the [http://code.google.com/p/treelayout/source/checkout TreeLayout SVN repository].
-
-The projects contain configurations for the Eclipse and !NetBeans IDEs as well as ANT scripts to build them. Maven is also supported.
 
 ==Known Usages==
   * Terence Parr uses abego !TreeLayout in [http://www.antlr.org/ ANTLR 4] to visualize parse trees.

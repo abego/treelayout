@@ -36,7 +36,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.abego.treelayout.TreeForTreeLayout;
 
 /**
  * Provides a generic implementation for the {@link TreeForTreeLayout}

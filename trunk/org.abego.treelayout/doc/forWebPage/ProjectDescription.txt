@@ -84,9 +84,13 @@ In addition you may also find the example code helpful. It is included in the "d
 
 Based on Walker's algorithm `[1]` with enhancements suggested by Buchheim,  Jünger, and Leipert `[2]` the software builds tree layouts in linear time. I.e. even trees with many nodes are built fast. Other than with the Reingold–Tilford algorithm `[3]` one is not limited to binary trees.
 
-In a benchmark the algorithm could layout trees with a speed of approx. 5 micro seconds per node. (Running on a 2.4 GHz Intel Core 2 Duo machine).
+The following figure show the results running the !TreeLayout algorithm on a !MacBook Pro 2.4 GHz Intel Core 2 Duo (2 GB Memory (-Xmx2000m)). The variously sized trees were created randomly.
+http://treelayout.googlecode.com/files/performance.png
+
+The picture illustrates the linear time behavior of the algorithm and shows the applicability also for large number of nodes. In this setting it takes approx. 5 μs to place one node.
 
 ==Known Usages==
+  * [http://www.actuate.com Actuate] is using abego !TreeLayout in some of their products to help provide personalized analytics and insights.
   * Terence Parr uses abego !TreeLayout in [http://www.antlr.org/ ANTLR 4] to visualize parse trees.
   * Martin Skurla integrated abego !TreeLayout in his [https://bitbucket.org/crazyjavahacking AST visualizer] and wrote a nice article about it ([http://crazyjavahacking.org/the-story-of-javac-ast-visualization-on-netbeans-platform/ The story of javac AST Visualization on NetBeans Platform]).
 

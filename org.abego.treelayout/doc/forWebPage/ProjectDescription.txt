@@ -92,6 +92,8 @@ The picture illustrates the linear time behavior of the algorithm and shows the 
 ==Known Usages==
   * [http://www.actuate.com Actuate] is using abego !TreeLayout in some of their products to help provide personalized analytics and insights.
   * Terence Parr uses abego !TreeLayout in [http://www.antlr.org/ ANTLR 4] to visualize parse trees.
+  * The [http://satoss.uni.lu/members/piotr/adtool/ Attack-Defense Tree Tool (ADTool)] displays attack-defense trees using abego !TreeLayout. ADTool allows users to model and analyze attack-defense scenarios represented with attack-defense trees and attack-defense terms.
+  * In his article "[http://www.it-cow.de/post/Zeichnen-von-Baumen-beliebigen-Grades-mithilfe-der-abego-TreeLayout-Bibliothek-und-dem-MVC-Design-Pattern.aspx Zeichnen von Bäumen beliebigen Grades mithilfe der abego TreeLayout-Bibliothek und dem MVC-Design Pattern.]" Thomas Kramer describes how he uses abego !TreeLayout together with the Model-View-Controller pattern to create his application (sources included).
   * Martin Skurla integrated abego !TreeLayout in his [https://bitbucket.org/crazyjavahacking AST visualizer] and wrote a nice article about it ([http://crazyjavahacking.org/the-story-of-javac-ast-visualization-on-netbeans-platform/ The story of javac AST Visualization on NetBeans Platform]).
 
 _(If you are using abego !TreeLayout in your application please let me know. If you like I will also add you to this list.)_

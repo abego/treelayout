@@ -8,7 +8,7 @@
     <groupId>org.abego.treelayout</groupId>
     <artifactId>org.abego.treelayout.core</artifactId>
     <version>1.0.2-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>bundle</packaging>
 
     <name>abego TreeLayout Core</name>
     <description>Efficient and customizable TreeLayout Algorithm in Java.</description>
@@ -50,9 +50,50 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- OSGi metadata -->
+        <maven-bundle-plugin.version>2.3.7</maven-bundle-plugin.version>
+        <bundle.namespace>org.abego.treelayout</bundle.namespace>
+        <osgi.embed />
+        <osgi.failok>false</osgi.failok>
+        <osgi.nouses>false</osgi.nouses>
+        <osgi.versionPolicy>${range;[===,=+);${@}}</osgi.versionPolicy>
+        <osgi.private>
+            ${bundle.namespace}.internal.*
+        </osgi.private>
+        <osgi.export>
+            !${bundle.namespace}.internal.*,${bundle.namespace}.*;version="${project.version}"
+        </osgi.export>
+        <osgi.import>
+            sun.misc;resolution:=optional,
+            *
+        </osgi.import>
     </properties>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${maven-bundle-plugin.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <obrRepository>NONE</obrRepository>
+                        <instructions>
+                            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                            <Import-Package>${osgi.import}</Import-Package>
+                            <Export-Package>${osgi.export}</Export-Package>
+                            <Private-Package>${osgi.private}</Private-Package>
+                            <Embed-Dependency>${osgi.embed}</Embed-Dependency>
+                            <_nouses>${osgi.nouses}</_nouses>
+                            <_versionpolicy>${osgi.versionPolicy}</_versionpolicy>
+                            <_failok>${osgi.failok}</_failok>
+                        </instructions>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -76,6 +117,10 @@
                         </manifest>
                     </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

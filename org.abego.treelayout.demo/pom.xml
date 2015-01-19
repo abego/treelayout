@@ -7,7 +7,7 @@
 
     <groupId>org.abego.treelayout</groupId>
     <artifactId>org.abego.treelayout.demo</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>abego TreeLayout Core Demo</name>
@@ -84,7 +84,7 @@
         <dependency>
             <groupId>org.abego.treelayout</groupId>
             <artifactId>org.abego.treelayout.core</artifactId>
-            <version>1.0.2-SNAPSHOT</version>
+            <version>1.0.2</version>
         </dependency>
     </dependencies>
 </project>

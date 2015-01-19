@@ -7,7 +7,7 @@
 
     <groupId>org.abego.treelayout</groupId>
     <artifactId>org.abego.treelayout.core</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
     <packaging>bundle</packaging>
 
     <name>abego TreeLayout Core</name>

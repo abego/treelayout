@@ -24,9 +24,9 @@ http://treelayout.googlecode.com/files/TreeGraphView-Figure7.png
 
   * *Sources*: http://code.google.com/p/treelayout/source/browse/
   * *JAR files*: 
-    * [http://treelayout.googlecode.com/files/org.abego.treelayout.core.jar org.abego.treelayout.core.jar]: the !TreeLayout algorithm core.
-    * [http://treelayout.googlecode.com/files/org.abego.treelayout.netbeans.jar org.abego.treelayout.netbeans.jar]: use the !TreeLayout algorithm for the !NetBeans visual API (!GraphLayout, ...). _(When using this JAR make sure the !NetBeans libraries 'org.netbeans.api.visual', 'org.openide.util', and 'org.openide.util.lookup' are in the classpath.)_
-    * for more files (e.g. older or specific versions) see the [http://code.google.com/p/treelayout/downloads/list download page].
+    * [http://sourceforge.net/projects/treelayout/files/org.abego.treelayout.core.jar/download]: the !TreeLayout algorithm core.
+    * [http://sourceforge.net/projects/treelayout/files/org.abego.treelayout.netbeans.jar/download]: use the !TreeLayout algorithm for the !NetBeans visual API (!GraphLayout, ...). _(When using this JAR make sure the !NetBeans libraries 'org.netbeans.api.visual', 'org.openide.util', and 'org.openide.util.lookup' are in the classpath.)_
+    * for more files (e.g. older or specific versions) see the [https://sourceforge.net/projects/treelayout/files/ download page].
   * *Twitter*: [http://twitter.com/#!/abego @abego] _(for announcement of new releases)_
 !TreeLayout is also available from [http://repo1.maven.org/maven2/org/abego/treelayout/ Maven Central]. You may want to add this to your POM:
 {{{
@@ -35,7 +35,7 @@ http://treelayout.googlecode.com/files/TreeGraphView-Figure7.png
         <dependency>
             <groupId>org.abego.treelayout</groupId>
             <artifactId>org.abego.treelayout.core</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
         </dependency>
         ...
     </dependencies>
@@ -84,7 +84,7 @@ In addition you may also find the example code helpful. It is included in the "d
 
 Based on Walker's algorithm `[1]` with enhancements suggested by Buchheim,  Jünger, and Leipert `[2]` the software builds tree layouts in linear time. I.e. even trees with many nodes are built fast. Other than with the Reingold–Tilford algorithm `[3]` one is not limited to binary trees.
 
-The following figure show the results running the !TreeLayout algorithm on a !MacBook Pro 2.4 GHz Intel Core 2 Duo (2 GB Memory (-Xmx2000m)). The variously sized trees were created randomly.
+The following figure shows the results running the !TreeLayout algorithm on a !MacBook Pro 2.4 GHz Intel Core 2 Duo (2 GB Memory (-Xmx2000m)). The variously sized trees were created randomly.
 http://treelayout.googlecode.com/files/performance.png
 
 The picture illustrates the linear time behavior of the algorithm and shows the applicability also for large number of nodes. In this setting it takes approx. 5 μs to place one node.

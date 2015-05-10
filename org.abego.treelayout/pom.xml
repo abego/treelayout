@@ -12,7 +12,7 @@
 
     <name>abego TreeLayout Core</name>
     <description>Efficient and customizable TreeLayout Algorithm in Java.</description>
-    <url>http://code.google.com/p/treelayout/</url>
+    <url>http://treelayout.sourceforge.net</url>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>
@@ -23,14 +23,14 @@
     <licenses>
         <license>
             <name>BSD 3-Clause "New" or "Revised" License (BSD-3-Clause)</name>
-            <url>http://treelayout.googlecode.com/files/LICENSE.TXT</url>
+            <url>http://www.abego-software.de/legal/apl-v10.html</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
 
     <scm>
-        <url>http://code.google.com/p/treelayout/source/browse/</url>
-        <connection>scm:svn:http://treelayout.googlecode.com/svn/</connection>
+        <url>https://github.com/abego/treelayout</url>
+        <connection>scm:https://github.com/abego/treelayout.git</connection>
     </scm>
 
     <developers>

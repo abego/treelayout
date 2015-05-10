@@ -1,7 +1,8 @@
 abego TreeLayout - Efficiently create compact tree layouts
 =============================================================================
 
-http://code.google.com/p/treelayout/
+Project web page: http://treelayout.sourceforge.net
+GitHub: https://github.com/abego/treelayout
 
 Udo Borkowski, ub at abego org
 abego Software GmbH, Germany

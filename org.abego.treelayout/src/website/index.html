@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>abego TreeLayout - Efficient and Customizable Tree Layout Algorithm in Java</title>
+<style type="text/css">
+
+html {
+	color: #333333; 
+	line-height: 1.5; 
+	font-family: Helvetica, arial, sans-serif;
+} 
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #ddd;
+} 
+code {
+	white-space: pre;
+}
+table {
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+td,th {
+	border: 1px solid #ccc; 
+	padding: 5px;
+}
+.content {
+	margin-top: 8px;
+}
+.project_icon {
+	float: left;
+	margin: 0.5em;
+	margin-left:0;
+}
+	
+@media screen {
+	.nav {
+		padding-left:10px;
+		padding-right:10px;
+	    position: fixed;
+    	top: 0px;
+    	left: 0px;
+    	bottom: 0px;
+    	width: 180px;
+    	overflow-y: auto;
+    	background-color: #FC6;
+	}
+	.content {
+	    margin-left: 200px;
+	}
+	.nav ul {
+		padding-left: 1em;
+	}
+}
+@media print {
+	.nav {
+		display: none;
+	};
+}
+</style>
+</head>
+<body>
+<div class="nav">
+<h2 id="content">Content</h2>
+<ul>
+<li><a href="#Overview">Overview</a></li>
+<li><a href="#Download">Download/Installation</a></li>
+<li><a href="#Development">Development</a></li>
+<li><a href="#NetBeans">NetBeans and abego TreeLayout</a></li>
+<li><a href="#Documentation">Documentation</a></li>
+<li><a href="#Performance">Algorithm Performance</a></li>
+<li><a href="#Usages">Known Usages</a></li>
+<li><a href="#History">History</a></li>
+<li><a href="#License">License</a></li>
+<li><a href="#References">References</a></li>
+</ul>
+<h2 id="content">Links</h2>
+<ul>
+<li><a href="https://github.com/abego/treelayout" target="_blank">GitHub Project</a></li>
+<li><a href="http://www.abego-software.de/contacten.html" target="_blank">Contact/Support</a></li>
+<li><a href="http://www.abego-software.de/imprinten.html" target="_blank">Imprint</a></li>
+</ul>
+</div>
+<a name="Overview"></a>
+<div class="content">
+<p><img src="image/TreeLayout-Logo-small.png" class="project_icon" alt="Project Logo"></img></p>
+<h1 id="abego-treelayout">abego TreeLayout</h1>
+<p><strong>Efficient and Customizable Tree Layout Algorithm in Java</strong></p>
+<h2 id="overview"> Overview</h2>
+<p>The TreeLayout creates tree layouts for arbitrary trees. It is not restricted to a specific output or format, but can be used for any kind of two dimensional diagram. Examples are Swing based components, SVG files, and many more. This is possible because TreeLayout separates the layout of a tree from the actual rendering.</p>
+<p>To use the TreeLayout you mainly need to supply an instance of the TreeLayout class with the nodes of the tree (including &#8220;children&#8221; links), together with the &#8220;size&#8221; of each node. In addition you can configure the layout by specifying parameters like &#8220;gap between levels&#8221; etc..</p>
+<p>Based on this information TreeLayout creates a compact, nice looking layout. The layout has the following properties <a href="#2">[2]</a>:</p>
+<ol>
+<li>The layout displays the hierarchical structure of the tree, i.e.&#160;the y-coordinate of a node is given by its level.</li>
+<li>The edges do not cross each other and nodes on the same level have a minimal horizontal distance.</li>
+<li>The drawing of a subtree does not depend on its position in the tree, i.e.&#160;isomorphic subtrees are drawn identically up to translation.</li>
+<li>The order of the children of a node is displayed in the drawing.</li>
+<li>The algorithm works symmetrically, i.e.&#160;the drawing of the reflection of a tree is the reflected drawing of the original tree.</li>
+</ol>
+<p>Here an example tree layout: </p>
+<img src="image/TreeGraphView-Figure7.png" alt="Example Tree Layout" />
+<h1 id="download-and-installation"><a name="Download"></a> Download and Installation</h1>
+<ul>
+<li><strong>Sources</strong>: <a href="https://github.com/abego/treelayout">https://github.com/abego/treelayout</a></li>
+<li><strong>JAR files</strong>:
+<ul>
+<li><a href="http://sourceforge.net/projects/treelayout/files/org.abego.treelayout.core.jar/download">http://sourceforge.net/projects/treelayout/files/org.abego.treelayout.core.jar/download</a>: the TreeLayout algorithm core.</li>
+<li><a href="http://sourceforge.net/projects/treelayout/files/org.abego.treelayout.netbeans.jar/download">http://sourceforge.net/projects/treelayout/files/org.abego.treelayout.netbeans.jar/download</a>: use the TreeLayout algorithm for the NetBeans visual API (GraphLayout, &#8230;). <em>(When using this JAR make sure the NetBeans libraries &#8216;org.netbeans.api.visual&#8217;, &#8216;org.openide.util&#8217;, and &#8216;org.openide.util.lookup&#8217; are in the classpath.)</em></li>
+<li>for more files (e.g.&#160;older or specific versions) see the <a href="https://sourceforge.net/projects/treelayout/files/">download page</a>.</li>
+</ul></li>
+<li><strong>Twitter</strong>: <a href="http://twitter.com/#!/abego">@abego</a> <em>(e.g.&#160;for announcement of new releases)</em></li>
+</ul>
+<p>TreeLayout is also available from <a href="http://repo1.maven.org/maven2/org/abego/treelayout/">Maven Central</a>. You may want to add this to your POM:</p>
+<pre><code>&lt;dependencies&gt;
+    ...
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.abego.treelayout&lt;/groupId&gt;
+        &lt;artifactId&gt;org.abego.treelayout.core&lt;/artifactId&gt;
+        &lt;version&gt;1.0.2&lt;/version&gt;
+    &lt;/dependency&gt;
+    ...
+&lt;/dependencies&gt;</code></pre>
+<h1 id="development"><a name="Development"></a> Development</h1>
+<p>You may check out the TreeLayout source code from the <a href="https://github.com/abego/treelayout">GitHub repository</a>.</p>
+<p>The projects contain configurations for the Eclipse and NetBeans IDEs as well as ANT scripts to build them. Maven is also supported.</p>
+<h1 id="netbeans-and-abego-treelayout"><a name="NetBeans"></a> NetBeans and abego TreeLayout</h1>
+<p>The NetBeans Visual API already includes an algorithm to layout trees (and graphs in general). However the default implementation of NetBeans does not always generate layouts as compact as the abego TreeLayout implementation:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>Layout using abego TreeLayout</strong></th>
+<th align="left"><strong>Layout using NetBeans&#8217; default Tree GraphLayout</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><img src="image/compact-layout.png" alt="Compact layout using abego TreeLayout" /></td>
+<td align="left"><img src="image/netbeans-layout.png" alt="Layout using NetBeans&#8217; default Tree GraphLayout" /></td>
+</tr>
+</tbody>
+</table>
+<p>Both screenshots are taken from the demo application in the &#8220;org.abego.treelayout.netbeans.demo&#8221; project, also provided in the sources. The demo project includes the &#8220;org.abego.treelayout.netbeans&#8221; library to easily access the abego TreeLayout algorithm from standard NetBeans visual code.</p>
+<p>As the following comparision shows using the abego TreeLayout in NetBeans visual code is as simple as using the standard GraphLayout:</p>
+<p><strong>Use abego TreeLayout to create a SceneLayout</strong>:</p>
+<pre><code>AbegoTreeLayoutForNetbeans&lt;N, E&gt; graphLayout = 
+        new AbegoTreeLayoutForNetbeans&lt;N, E&gt;(root, 100, 100, 50, 50, true);
+SceneLayout sceneLayout = LayoutFactory.createSceneGraphLayout(scene,graphLayout);
+...</code></pre>
+<p><strong>Use NetBeans&#8217; default Tree GraphLayout to create a SceneLayout</strong>:</p>
+<pre><code>GraphLayout&lt;N, E&gt; graphLayout = 
+        GraphLayoutFactory.createTreeGraphLayout(100, 100, 50, 50, true);
+GraphLayoutSupport.setTreeGraphLayoutRootNode(graphLayout, root);
+SceneLayout sceneLayout = LayoutFactory.createSceneGraphLayout(scene, graphLayout);
+...</code></pre>
+<h1 id="documentation"><a name="Documentation"></a> Documentation</h1>
+<p>For detailed documentation see the javaDoc in the source code and this <a href="abegoTreeLayout.pdf">pdf document</a>.</p>
+<p>In addition you may also find the example code helpful. It is included in the &#8220;demo&#8221; packages.</p>
+<h2 id="algorithm-performance"><a name="Performance"></a> Algorithm Performance</h2>
+<p>Based on Walker&#8217;s algorithm <a href="#1">[1]</a> with enhancements suggested by Buchheim, J&#252;nger, and Leipert <a href="#2">[2]</a> the software builds tree layouts in linear time. I.e. even trees with many nodes are built fast. Other than with the Reingold&#8211;Tilford algorithm <a href="#3">[3]</a> one is not limited to binary trees.</p>
+<p>The following figure shows the results running the TreeLayout algorithm on a MacBook Pro 2.4 GHz Intel Core 2 Duo (2 GB Memory (-Xmx2000m)). The variously sized trees were created randomly.</p>
+<div class="figure">
+<img src="image/performance.png" alt="Performance of TreeLayout on random trees" />
+</div>
+<p>The picture illustrates the linear time behavior of the algorithm and shows the applicability also for large number of nodes. In this setting it takes approx. 5 &#956;s to place one node.</p>
+<h2 id="known-usages"><a name="Usages"></a> Known Usages</h2>
+<ul>
+<li><a href="http://www.actuate.com">Actuate/OpenText</a> is using abego TreeLayout in some of their products to help provide personalized analytics and insights.</li>
+<li>Terence Parr uses abego TreeLayout in <a href="http://www.antlr.org/">ANTLR 4</a> to visualize parse trees.</li>
+<li>The <a href="http://satoss.uni.lu/members/piotr/adtool/">Attack-Defense Tree Tool (ADTool)</a> displays attack-defense trees using abego TreeLayout. ADTool allows users to model and analyze attack-defense scenarios represented with attack-defense trees and attack-defense terms.</li>
+<li>In his article &#8220;<a href="http://www.it-cow.de/post/Zeichnen-von-Baumen-beliebigen-Grades-mithilfe-der-abego-TreeLayout-Bibliothek-und-dem-MVC-Design-Pattern.aspx">Zeichnen von B&#228;umen beliebigen Grades mithilfe der abego TreeLayout-Bibliothek und dem MVC-Design Pattern.</a>&#8221; Thomas Kramer describes how he uses abego TreeLayout together with the Model-View-Controller pattern to create his application (sources included).</li>
+<li>Martin Skurla integrated abego TreeLayout in his <a href="https://bitbucket.org/crazyjavahacking">AST visualizer</a> and wrote a nice article about it (<a href="http://crazyjavahacking.org/the-story-of-javac-ast-visualization-on-netbeans-platform/">The story of javac AST Visualization on NetBeans Platform</a>).</li>
+</ul>
+<p><em>(If you are using abego TreeLayout in your application please let me know. If you like I will also add you to this list.)</em></p>
+<h2 id="history"><a name="History"></a> History</h2>
+<p>For a history see the <a href="https://raw.githubusercontent.com/abego/treelayout/master/org.abego.treelayout/CHANGES.txt">Changes</a> file.</p>
+<p>New release of TreeLayout will be announced on Twitter <a href="http://twitter.com/#!/abego">@abego</a>.</p>
+<h2 id="license"><a name="License"></a> License</h2>
+<p>abego TreeLayout is distributed under a BSD license of <a href="http://www.abego-software.de">abego Software</a>. (<a href="https://raw.githubusercontent.com/abego/treelayout/master/org.abego.treelayout/src/LICENSE.TXT">License text</a>)</p>
+
+<h2 id="references"><a name="References"></a> References</h2>
+<p><a name="1">[1]</a> Walker JQ II. A node-positioning algorithm for general trees. <i>Software&#8212;Practice and Experience</i> 1990; <b>20</b>(7):685&#8211;705.<br />
+<a name="2">[2]</a> Buchheim C, J&#252;nger M, Leipert S. Drawing rooted trees in linear time. <i>Software&#8212;Practice and Experience</i> 2006; <b>36</b>(6):651&#8211;665<br />
+<a name="3">[3]</a> Reingold EM, Tilford JS. Tidier drawings of trees. <i>IEEE Transactions on Software Engineering</i> 1981; <b>7</b>(2):223&#8211;228.</p>
+</div>
+</body>
+</html>

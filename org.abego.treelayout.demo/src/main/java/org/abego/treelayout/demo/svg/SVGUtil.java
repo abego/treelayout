@@ -44,22 +44,27 @@ import java.io.IOException;
  * 
  * <pre>
  * String s = doc(svg(
- * 		160,
- * 		200,
- * 		rect(0, 0, 160, 200, &quot;fill:red;&quot;)
- * 				+ svg(10, 10, 100, 100,
- * 						rect(0, 0, 100, 100, &quot;fill:orange; stroke:rgb(0,0,0);&quot;))
- * 				+ line(20, 20, 100, 100, &quot;stroke:black; stroke-width:2px;&quot;)
- * 				+ line(20, 100, 100, 20, &quot;stroke:black; stroke-width:2px;&quot;)
- * 				+ text(10,
- * 						140,
- * 						&quot;font-family:verdana; font-size:20px; font-weight:bold;&quot;,
- * 						&quot;Hello world&quot;)));
+ *         160,
+ *         200,
+ *         rect(0, 0, 160, 200, &quot;fill:red;&quot;)
+ *         + svg(10, 10, 100, 100,
+ *                 rect(0, 0, 100, 100, &quot;fill:orange; stroke:rgb(0,0,0);&quot;))
+ *         + line(20, 20, 100, 100, &quot;stroke:black; stroke-width:2px;&quot;)
+ *         + line(20, 100, 100, 20, &quot;stroke:black; stroke-width:2px;&quot;)
+ *         + text(10, 140,
+ *                 &quot;font-family:verdana; font-size:20px; font-weight:bold;&quot;,
+ *                 &quot;Hello world&quot;)));
  * 
  * File file = new File(&quot;demo.svg&quot;);
- * FileWriter w = new FileWriter(file);
- * w.write(s);
- * w.close();
+ * FileWriter w = null;
+ * try {
+ *     w = new FileWriter(file);
+ *     w.write(s);
+ * } finally {
+ *     if (w != null) {
+ *         w.close();
+ *     }
+ * }
  * </pre>
  * 
  * (see {@link #main(String[])})
@@ -228,10 +233,15 @@ public class SVGUtil {
 								"Hello world")));
 
 		File file = new File("demo.svg");
-		FileWriter w = new FileWriter(file);
-		w.write(s);
-		w.close();
-
+		FileWriter w = null;
+		try {
+		    w = new FileWriter(file);
+	        w.write(s);
+		} finally {
+		    if (w != null) {
+		        w.close();
+		    }
+		}
 		System.out.println(String.format("File written: %s",
 				file.getAbsolutePath()));
 

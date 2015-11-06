@@ -39,12 +39,12 @@ package org.abego.treelayout;
  * {@link org.abego.treelayout.util.AbstractTreeForTreeLayout} to implement this
  * interface or even use the
  * {@link org.abego.treelayout.util.DefaultTreeForTreeLayout} class directly.
- * <p>
+ * </p>
  * Also see <a href="package-summary.html">this overview</a>.
  * 
  * @author Udo Borkowski (ub@abego.org)
  * 
- * @param <TreeNode>
+ * @param <TreeNode> Type of elements used as nodes in the tree
  */
 public interface TreeForTreeLayout<TreeNode> {
 
@@ -62,7 +62,7 @@ public interface TreeForTreeLayout<TreeNode> {
 	 * <p>
 	 * Time Complexity: O(1)
 	 * 
-	 * @param node
+	 * @param node &nbsp;
 	 * @return true iff node is a leaf in the tree, i.e. has no children.
 	 */
 	boolean isLeaf(TreeNode node);
@@ -72,8 +72,8 @@ public interface TreeForTreeLayout<TreeNode> {
 	 * <p>
 	 * Time Complexity: O(1)
 	 * 
-	 * @param node
-	 * @param parentNode
+	 * @param node &nbsp;
+	 * @param parentNode &nbsp;
 	 * @return true iff the node is a child of the given parentNode
 	 */
 	boolean isChildOfParent(TreeNode node, TreeNode parentNode);

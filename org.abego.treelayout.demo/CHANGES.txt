@@ -11,6 +11,18 @@ CHANGES
 =============================================================================
 
 -----------------------------------------------------------------------------
+Release 1.0.3 (2015-11-05)
+
+Documentation
+
+*	Improve JavaDoc comments
+I
+CodeQuality
+
+*	Fix issue in SVG demo code that may cause some resource not to be released.
+    (Thanks to the HP Fortify Open Review team for reporting)
+
+-----------------------------------------------------------------------------
 Release 1.0.1 (2011-11-16)
 
 2011-11-16

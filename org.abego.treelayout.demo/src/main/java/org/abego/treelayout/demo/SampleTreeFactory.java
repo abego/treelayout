@@ -40,7 +40,7 @@ import org.abego.treelayout.util.DefaultTreeForTreeLayout;
 public class SampleTreeFactory {
 
 	/**
-	 * Returns a "Sample" tree with {@link TextInBox} items as nodes.
+	 * @return a "Sample" tree with {@link TextInBox} items as nodes.
 	 */
 	public static TreeForTreeLayout<TextInBox> createSampleTree() {
 		TextInBox root = new TextInBox("root", 40, 20);
@@ -63,7 +63,7 @@ public class SampleTreeFactory {
 	}
 	
 	/**
-	 * Returns a "Sample" tree with {@link TextInBox} items as nodes.
+	 * @return a "Sample" tree with {@link TextInBox} items as nodes.
 	 */
 	public static TreeForTreeLayout<TextInBox> createSampleTree2() {
 		TextInBox root = new TextInBox("prog", 40, 20);

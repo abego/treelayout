@@ -29,7 +29,7 @@
  */
 package org.abego.treelayout.util;
 
-import static org.abego.treelayout.internal.util.Contract.*;
+import static org.abego.treelayout.internal.util.Contract.checkArg;
 
 import org.abego.treelayout.NodeExtentProvider;
 
@@ -39,7 +39,7 @@ import org.abego.treelayout.NodeExtentProvider;
  * 
  * @author Udo Borkowski (ub@abego.org)
  * 
- * @param <T>
+ * @param <T> Type of elements used as nodes in the tree
  */
 public class FixedNodeExtentProvider<T> implements NodeExtentProvider<T> {
 

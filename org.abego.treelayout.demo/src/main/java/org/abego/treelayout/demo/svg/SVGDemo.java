@@ -42,7 +42,7 @@ import org.abego.treelayout.util.DefaultConfiguration;
  * <p>
  * The rendered SVG looks like this:
  * <p>
- * <img src="doc-files/svgdemo.png">
+ * <img src="doc-files/svgdemo.png" alt="A tree rendered using SVG">
  * <p>
  * Link: <a href="doc-files/svgdemo.svg">The SVG file (only viewable in SVG aware
  * browsers)</a>
@@ -54,6 +54,8 @@ public class SVGDemo {
 	/**
 	 * Returns an SVG text displaying a tree with nodes placed according to a
 	 * layout created by {@link TreeLayout}.
+	 * 
+	 * @param args [unused]
 	 */
 	public static void main(String[] args) {
 		// get the sample tree

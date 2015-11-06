@@ -40,7 +40,7 @@ import org.abego.treelayout.Configuration;
  * @author Udo Borkowski (ub@abego.org)
  * 
  * 
- * @param <TreeNode>
+ * @param <TreeNode> Type of elements used as nodes in the tree
  */
 public class DefaultConfiguration<TreeNode> implements
 		Configuration<TreeNode> {
@@ -48,8 +48,8 @@ public class DefaultConfiguration<TreeNode> implements
 	/**
 	 * Specifies the constants to be used for this Configuration.
 	 * 
-	 * @param gapBetweenLevels
-	 * @param gapBetweenNodes
+	 * @param gapBetweenLevels &nbsp;
+	 * @param gapBetweenNodes &nbsp;
 	 * @param location
 	 *            [default: {@link org.abego.treelayout.Configuration.Location#Top Top}]
 	 * @param alignmentInLevel
@@ -72,6 +72,10 @@ public class DefaultConfiguration<TreeNode> implements
 	 * <p>
 	 * see
 	 * {@link #DefaultConfiguration(double, double, org.abego.treelayout.Configuration.Location, org.abego.treelayout.Configuration.AlignmentInLevel)}
+	 * </p>
+     * @param gapBetweenLevels &nbsp;
+     * @param gapBetweenNodes &nbsp;
+     * @param location &nbsp;
 	 */
 	public DefaultConfiguration(double gapBetweenLevels,
 			double gapBetweenNodes, Location location) {
@@ -85,6 +89,9 @@ public class DefaultConfiguration<TreeNode> implements
 	 * <p>
 	 * see
 	 * {@link #DefaultConfiguration(double, double,  org.abego.treelayout.Configuration.Location, org.abego.treelayout.Configuration.AlignmentInLevel)}
+	 * </p>
+     * @param gapBetweenLevels &nbsp;
+     * @param gapBetweenNodes &nbsp;
 	 */
 	public DefaultConfiguration(double gapBetweenLevels,
 			double gapBetweenNodes) {

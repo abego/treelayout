@@ -108,13 +108,14 @@ public class SVGUtil {
 
 	/**
 	 * 
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
-	 * @param style
+	 * @param x &nbsp;
+	 * @param y &nbsp;
+	 * @param width &nbsp;
+	 * @param height &nbsp;
+	 * @param style &nbsp;
 	 * @param extraAttributes
 	 *            [default:""]
+	 * @return an SVG 'rect' tag with the given parameters           
 	 */
 	public static String rect(String x, String y, String width, String height,
 			String style, String extraAttributes) {
@@ -130,13 +131,14 @@ public class SVGUtil {
 
 	/**
 	 * 
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
-	 * @param style
+	 * @param x &nbsp;
+	 * @param y &nbsp;
+	 * @param width &nbsp;
+	 * @param height &nbsp;
+	 * @param style &nbsp;
 	 * @param extraAttributes
 	 *            [default:""]
+     * @return an SVG 'rect' tag with the given parameters           
 	 */
 	public static String rect(Number x, Number y, Number width, Number height,
 			String style, String extraAttributes) {
@@ -209,8 +211,9 @@ public class SVGUtil {
 	/**
 	 * Creates a sample SVG file "demo.svg"
 	 * 
-	 * @param args
-	 * @throws IOException
+	 * @param args option '-view': view the just created file 
+	 *     (may not be supported on all platforms)
+	 * @throws IOException  &nbsp;
 	 */
 	public static void main(String[] args) throws IOException {
 		String s = doc(svg(

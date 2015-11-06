@@ -36,22 +36,22 @@ package org.abego.treelayout;
  * 
  * @author Udo Borkowski (ub@abego.org)
  * 
- * @param <TreeNode>
+ * @param <TreeNode> Type of elements used as nodes in the tree
  */
 public interface NodeExtentProvider<TreeNode> {
 	/**
 	 * Returns the width of the given treeNode.
 	 * 
-	 * @param treeNode
-	 * @return [result >= 0]
+	 * @param treeNode  &nbsp;
+	 * @return [result &gt;= 0]
 	 */
 	double getWidth(TreeNode treeNode);
 
 	/**
 	 * Returns the height of the given treeNode.
 	 * 
-	 * @param treeNode
-	 * @return [result >= 0]
+	 * @param treeNode &nbsp;
+	 * @return [result &gt;= 0]
 	 */
 	double getHeight(TreeNode treeNode);
 }

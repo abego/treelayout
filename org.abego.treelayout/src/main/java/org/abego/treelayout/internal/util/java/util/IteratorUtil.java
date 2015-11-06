@@ -71,8 +71,8 @@ public class IteratorUtil {
 	 * <p>
 	 * I.e. the iterator does the reverse of the {@link List#iterator()}.
 	 * 
-	 * @param <T>
-	 * @param list
+	 * @param <T> Type of elements in the list
+	 * @param list &nbsp;
 	 * @return a reverse {@link Iterator} of the list
 	 */
 	public static <T> Iterator<T> createReverseIterator(List<T> list) {

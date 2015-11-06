@@ -99,7 +99,7 @@ public class StringUtil {
 	/**
 	 * see {@link #quote(String, String)}
 	 * 
-	 * @param s
+	 * @param s the string to quote
 	 * @return nullable
 	 */
 	public static String quote(String s) {

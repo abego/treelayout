@@ -65,7 +65,7 @@ public class TextInBoxTreePane extends JComponent {
 	 * Specifies the tree to be displayed by passing in a {@link TreeLayout} for
 	 * that tree.
 	 * 
-	 * @param treeLayout
+	 * @param treeLayout the {@link TreeLayout} to be displayed
 	 */
 	public TextInBoxTreePane(TreeLayout<TextInBox> treeLayout) {
 		this.treeLayout = treeLayout;

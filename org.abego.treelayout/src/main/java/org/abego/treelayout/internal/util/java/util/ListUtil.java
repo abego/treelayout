@@ -42,7 +42,7 @@ public class ListUtil {
 
 	/**
 	 * 
-	 * @param <T>
+	 * @param <T> Type of elements in the list
 	 * @param list [!list.isEmpty()]
 	 * @return the last element of the list
 	 */

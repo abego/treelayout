@@ -65,7 +65,7 @@ public class SVGForTextInBoxTree {
 	}
 
 	/**
-	 * Specifies the {@link TreeLayout} to be rendered as SVG.
+	 * @param treeLayout the {@link TreeLayout} to be rendered as SVG
 	 */
 	public SVGForTextInBoxTree(TreeLayout<TextInBox> treeLayout) {
 		this.treeLayout = treeLayout;
@@ -123,7 +123,7 @@ public class SVGForTextInBoxTree {
 	}
 
 	/**
-	 * Returns the tree layout in SVG format.
+	 * @return the rendered tree, described in SVG format.
 	 */
 	public String getSVG() {
 		if (svgText == null) {

@@ -51,14 +51,14 @@ import org.abego.treelayout.internal.util.java.lang.string.StringUtil;
  * <p>
  * The nodes with their final layout can be retrieved through
  * {@link #getNodeBounds()}.
- * <p>
+ * </p>
  * See <a href="package-summary.html">this summary</a> to get an overview how to
  * use TreeLayout.
  * 
  * 
  * @author Udo Borkowski (ub@abego.org)
  * 
- * @param <TreeNode>
+ * @param <TreeNode> Type of elements used as nodes in the tree
  */
 public class TreeLayout<TreeNode> {
 	/*
@@ -90,6 +90,8 @@ public class TreeLayout<TreeNode> {
 
 	/**
 	 * Returns the Tree the layout is created for.
+	 * 
+	 * @return the Tree the layout is created for
 	 */
 	public TreeForTreeLayout<TreeNode> getTree() {
 		return tree;
@@ -102,6 +104,8 @@ public class TreeLayout<TreeNode> {
 
 	/**
 	 * Returns the {@link NodeExtentProvider} used by this {@link TreeLayout}.
+	 * 
+	 * @return the {@link NodeExtentProvider} used by this {@link TreeLayout}
 	 */
 	public NodeExtentProvider<TreeNode> getNodeExtentProvider() {
 		return nodeExtentProvider;
@@ -155,6 +159,8 @@ public class TreeLayout<TreeNode> {
 
 	/**
 	 * Returns the Configuration used by this {@link TreeLayout}.
+	 * 
+	 * @return the Configuration used by this {@link TreeLayout}
 	 */
 	public Configuration<TreeNode> getConfiguration() {
 		return configuration;
@@ -243,7 +249,7 @@ public class TreeLayout<TreeNode> {
 	/**
 	 * Returns the number of levels of the tree.
 	 * 
-	 * @return [level > 0]
+	 * @return [level &gt; 0]
 	 */
 	public int getLevelCount() {
 		return sizeOfLevel.size();
@@ -257,8 +263,8 @@ public class TreeLayout<TreeNode> {
 	 * the left or right the size of a level is the maximal width of the nodes
 	 * of that level.
 	 * 
-	 * @param level
-	 * @return the size of the level [level >= 0 && level < levelCount]
+	 * @param level &nbsp;
+	 * @return the size of the level [level &gt;= 0 &amp;&amp; level &lt; levelCount]
 	 */
 	public double getSizeOfLevel(int level) {
 		checkArg(level >= 0, "level must be >= 0");
@@ -687,7 +693,7 @@ public class TreeLayout<TreeNode> {
 	 * Returns the layout of the tree nodes by mapping each node of the tree to
 	 * its bounds (position and size).
 	 * <p>
-	 * For each rectangle x and y will be >= 0. At least one rectangle will have
+	 * For each rectangle x and y will be &gt;= 0. At least one rectangle will have
 	 * an x == 0 and at least one rectangle will have an y == 0.
 	 * 
 	 * @return maps each node of the tree to its bounds (position and size).
@@ -718,10 +724,13 @@ public class TreeLayout<TreeNode> {
 	 * In addition to the tree the {@link NodeExtentProvider} and the
 	 * {@link Configuration} must be given.
 	 * 
-	 * @param useIdentity
+     * @param tree &nbsp;
+     * @param nodeExtentProvider &nbsp;
+     * @param configuration &nbsp;
+     * @param useIdentity
 	 *            [default: false] when true, identity ("==") is used instead of
 	 *            equality ("equals(...)") when checking nodes. Within a tree
-	 *            each node must only be once (using this check).
+	 *            each node must only exist once (using this check).
 	 */
 	public TreeLayout(TreeForTreeLayout<TreeNode> tree,
 			NodeExtentProvider<TreeNode> nodeExtentProvider,
@@ -879,7 +888,7 @@ public class TreeLayout<TreeNode> {
 	 * Prints a dump of the tree to the given printStream, using the node's
 	 * "toString" method.
 	 * 
-	 * @param printStream
+	 * @param printStream &nbsp;
 	 * @param dumpConfiguration
 	 *            [default: new DumpConfiguration()]
 	 */

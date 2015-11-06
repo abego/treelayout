@@ -57,16 +57,16 @@ import org.netbeans.api.visual.widget.Widget;
  * <p>
  * E.g.
  * <table border="1">
+ * <caption>Comparison abego TreeLayout and NetBeans GraphLayout</caption>
  * <tr>
  * <th><b>AbegoTreeLayoutForNetbeans</b></th>
  * <th><b>Default NetBeans Layout</b></th>
  * </tr>
  * <tr>
- * <td><img src="doc-files/compact-layout.png"></td>
- * <td><img src="doc-files/netbeans-layout.png"></td>
+ * <td><img src="doc-files/compact-layout.png" alt="A tree rendered using abego TreeLayout"></td>
+ * <td><img src="doc-files/netbeans-layout.png" alt="A tree rendered using default NetBeans GraphLayout"></td>
  * </tr>
  * </table>
- * <p>
  * <h2>Usage</h2>
  * Assume you already have added the tree elements (nodes and edges) to a
  * GraphScene <tt>scene</tt> and the root node is stored in <tt>root</tt>. Then

@@ -52,7 +52,7 @@ import org.abego.treelayout.util.DefaultConfiguration;
  * <p>
  * Screenshot:
  * <p>
- * <img src="doc-files/swingdemo.png">
+ * <img src="doc-files/swingdemo.png" alt="A tree rendered using Swing">
  * 
  * @author Udo Borkowski (ub@abego.org)
  */
@@ -85,6 +85,8 @@ public class SwingDemo {
 	/**
 	 * Shows a dialog with a tree in a layout created by {@link TreeLayout},
 	 * using the Swing component {@link TextInBoxTreePane}.
+	 * 
+	 * @param args args[0]: treeName (default="")
 	 */
 	public static void main(String[] args) {
 		// get the sample tree

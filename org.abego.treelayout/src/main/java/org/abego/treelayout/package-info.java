@@ -63,7 +63,7 @@
  x-coordinate of a node is given by its level</i><p>
 
  Here an example tree layout:<p>
- <img src="doc-files/TreeGraphView-Top.png">
+ <img src="doc-files/TreeGraphView-Top.png" alt="Simple Tree with 6 nodes">
 
 
 
@@ -94,12 +94,12 @@
  <h4>Example: Extending AbstractTreeForTreeLayout</h4>
 
  Assume you have a tree consisting of nodes of type StringTreeNode:<p>
- <img src="doc-files/StringTreeNodeUML.png"><p>
+ <img src="doc-files/StringTreeNodeUML.png" alt="UML diagram for StringTreeNode"><p>
 
  As StringTreeNode provides the children in a list and you can get the parent for
  each node you can extend {@link org.abego.treelayout.util.AbstractTreeForTreeLayout AbstractTreeForTreeLayout} to create your 
  TreeForTreeLayout implementation. You only need to implement two methods and
- the constructor:<p>
+ the constructor:
  <pre>
  public class StringTreeAsTreeForTreeLayout extends
  &nbsp;&nbsp;&nbsp;&nbsp;AbstractTreeForTreeLayout&lt;StringTreeNode&gt; {
@@ -124,10 +124,10 @@
  <h4>Example: Using the DefaultTreeForTreeLayout</h4>
 
  Assume you want to create a tree with TextInBox items as nodes:<p>
- <img src="doc-files/TextInBoxUML.png"><p>
+ <img src="doc-files/TextInBoxUML.png" alt="UML diagram for TextInBox"><p>
 
  As you have no own tree implementation yet you may as well use 
- {@link org.abego.treelayout.util.DefaultTreeForTreeLayout DefaultTreeForTreeLayout} to create the tree:<p>
+ {@link org.abego.treelayout.util.DefaultTreeForTreeLayout DefaultTreeForTreeLayout} to create the tree:
  <pre>
  TextInBox root = new TextInBox("root", 40, 20);
  TextInBox n1 = new TextInBox("n1", 30, 20);
@@ -145,9 +145,9 @@
  tree.addChild(n1, n1_3);
  tree.addChild(root, n2);
  tree.addChild(n2, n2_1);
- </pre><p>
+ </pre>
  This will create a tree like this:<p>
- <img src="doc-files/svgdemo.png">
+ <img src="doc-files/svgdemo.png" alt="Tree created with SVG">
 
 
  <h3>NodeExtentProvider</h3>
@@ -162,10 +162,10 @@
  <h4>Example</h4>
 
  Assume you want to create a tree with TextInBox items as nodes:<p>
- <img src="doc-files/TextInBoxUML.png"><p>
+ <img src="doc-files/TextInBoxUML.png" alt="UML diagram for TextInBox"><p>
 
  Here each node contains its width and height. So your NodeExtentProvider may 
- look like this:<p><pre>
+ look like this:<pre>
  public class TextInBoxNodeExtentProvider implements
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NodeExtentProvider&lt;TextInBox&gt; {
 
@@ -196,10 +196,10 @@
 
  <h4>Root Position</h4>
 
- By default the root of the tree is located at the top of the diagram. However 
- one may also put it at the left, right or bottom of the diagram. 
- <p>
+ By default the root of the tree is located at the top of the diagram.
+ However one may also put it at the left, right or bottom of the diagram.
  <table border="1">
+ <caption>Possible Root Positions</caption>
  <tr>
  <th>Top (Default)</th>
  <th>Left</th>
@@ -207,15 +207,15 @@
  <th>Bottom</th>
  </tr>
  <tr>
- <td style="padding:10px;"><img src="doc-files/TreeGraphView-Top.png"></td>
- <td style="padding:10px;"><img src="doc-files/TreeGraphView-Left.png"></td>
- <td style="padding:10px;"><img src="doc-files/TreeGraphView-Right.png"></td>
- <td style="padding:10px;"><img src="doc-files/TreeGraphView-Bottom.png"></td>
+ <td style="padding:10px;"><img src="doc-files/TreeGraphView-Top.png" alt="Tree with root at top"></td>
+ <td style="padding:10px;"><img src="doc-files/TreeGraphView-Left.png" alt="Tree with root at left side"></td>
+ <td style="padding:10px;"><img src="doc-files/TreeGraphView-Right.png" alt="Tree with root at right side"></td>
+ <td style="padding:10px;"><img src="doc-files/TreeGraphView-Bottom.png" alt="Tree with root at bottom"></td>
  </tr>
  </table>
  <p>
  See {@link org.abego.treelayout.Configuration#getRootLocation() getRootLocation}.
-
+ </p>
 
 
 
@@ -227,28 +227,29 @@
  level" or "to the bottom of the level".
  <p>
  <table border="1">
+ <caption>Alignment in level when root is at the top</caption>
  <tr>
  <th>Center (Default)</th>
  <th>TowardsRoot ("top of level")</th>
  <th>AwayFromRoot ("bottom of level")</th>
  </tr>
  <tr>
- <td style="padding:10px;"><img src="doc-files/TreeGraphView-Center.png"></td>
- <td style="padding:10px;"><img src="doc-files/TreeGraphView-TowardsRoot.png"></td>
- <td style="padding:10px;"><img src="doc-files/TreeGraphView-AwayFromRoot.png"></td>
+ <td style="padding:10px;"><img src="doc-files/TreeGraphView-Center.png" alt="Tree with root at top and nodes center aligned"></td>
+ <td style="padding:10px;"><img src="doc-files/TreeGraphView-TowardsRoot.png" alt="Tree with root at top and nodes aligned to top"></td>
+ <td style="padding:10px;"><img src="doc-files/TreeGraphView-AwayFromRoot.png" alt="Tree with root at top and nodes aligned to bottom"></td>
  </tr>
  </table>
- <p>Alignment in level when root is at the left:</p>
  <table border="1">
+ <caption>Alignment in level when root is at the left</caption>
  <tr>
  <th>Center (Default)</th>
  <th>TowardsRoot ("left of level")</th>
  <th>AwayFromRoot<br>("right of level")</th>
  </tr>
  <tr>
- <td style="padding:10px;"><img src="doc-files/TreeGraphView-Center-RootLeft.png"></td>
- <td style="padding:10px;"><img src="doc-files/TreeGraphView-TowardsRoot-RootLeft.png"></td>
- <td style="padding:10px;"><img src="doc-files/TreeGraphView-AwayFromRoot-RootLeft.png"></td>
+ <td style="padding:10px;"><img src="doc-files/TreeGraphView-Center-RootLeft.png" alt="Tree with root at left side and nodes center aligned"></td>
+ <td style="padding:10px;"><img src="doc-files/TreeGraphView-TowardsRoot-RootLeft.png" alt="Tree with root at left side and nodes left aligned"></td>
+ <td style="padding:10px;"><img src="doc-files/TreeGraphView-AwayFromRoot-RootLeft.png" alt="Tree with root at left side and nodes right aligned"></td>
  </tr>
  </table>
 
@@ -261,7 +262,7 @@
 
  The gap between subsequent levels and the minimal gap between nodes can be configured.
  <p>
- <img src="doc-files/gapsAndLevels.png">
+ <img src="doc-files/gapsAndLevels.png" alt="levels, gapBetweenLevels and gapBetweenNodes Visualization">
  <p>
  See {@link org.abego.treelayout.Configuration#getGapBetweenLevels(int) getGapBetweenLevels} and 
  {@link org.abego.treelayout.Configuration#getGapBetweenNodes(Object, Object) getGapBetweenNodes}.
@@ -287,7 +288,7 @@
  MacBook Pro 2.4 GHz Intel Core 2 Duo (2 GB Memory (-Xmx2000m)). The variously 
  sized trees were created randomly. 
  <p>
- <img src="doc-files/performance.png">
+ <img src="doc-files/performance.png" alt="Chart: Performance of TreeLayout on random trees">
  <p>
  The picture illustrates the linear time behavior of the algorithm and shows 
  the applicability also for large number of nodes. In this setting it takes 

@@ -36,7 +36,7 @@ import org.abego.treelayout.internal.util.java.lang.IterableUtil;
 import org.abego.treelayout.internal.util.java.util.ListUtil;
 
 /**
- * Provides an easy way to implement the {@link TreeForTreeLayout} interface by
+ * Provides an easy way to implement the {@link org.abego.treelayout.TreeForTreeLayout} interface by
  * defining just two simple methods and a constructor.
  * <p>
  * To use this class the underlying tree must provide the children as a list
@@ -48,7 +48,7 @@ import org.abego.treelayout.internal.util.java.util.ListUtil;
  * 
  * @author Udo Borkowski (ub@abego.org)
  * 
- * @param <TreeNode>
+ * @param <TreeNode> Type of elements used as nodes in the tree
  */
 abstract public class AbstractTreeForTreeLayout<TreeNode> implements
 		TreeForTreeLayout<TreeNode> {
@@ -58,7 +58,7 @@ abstract public class AbstractTreeForTreeLayout<TreeNode> implements
 	 * <p>
 	 * Time Complexity: O(1)
 	 * 
-	 * @param node
+	 * @param node &nbsp;
 	 * @return [nullable] the parent of the node, or null when the node is a
 	 *         root.
 	 */
@@ -73,7 +73,7 @@ abstract public class AbstractTreeForTreeLayout<TreeNode> implements
 	 * <p>
 	 * A client must not modify the returned list.
 	 * 
-	 * @param node
+	 * @param node &nbsp;
 	 * @return the children of the given node. When node is a leaf the list is
 	 *         empty.
 	 */

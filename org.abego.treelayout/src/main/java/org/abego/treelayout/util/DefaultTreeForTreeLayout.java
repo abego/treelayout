@@ -38,7 +38,7 @@ import java.util.Map;
 
 
 /**
- * Provides a generic implementation for the {@link TreeForTreeLayout}
+ * Provides a generic implementation for the {@link org.abego.treelayout.TreeForTreeLayout}
  * interface, applicable to any type of tree node.
  * <p>
  * It allows you to create a tree "from scratch", without creating any new
@@ -52,7 +52,7 @@ import java.util.Map;
  * 
  * @author Udo Borkowski (ub@abego.org)
  * 
- * @param <TreeNode>
+ * @param <TreeNode> Type of elements used as nodes in the tree
  */
 public class DefaultTreeForTreeLayout<TreeNode> extends
 		AbstractTreeForTreeLayout<TreeNode> {
@@ -92,7 +92,7 @@ public class DefaultTreeForTreeLayout<TreeNode> extends
 
 	/**
 	 * 
-	 * @param node
+	 * @param node &nbsp;
 	 * @return true iff the node is in the tree
 	 */
 	public boolean hasNode(TreeNode node) {

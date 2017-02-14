@@ -437,7 +437,7 @@ public class TreeLayout<TreeNode> {
 	 * @return the greatest distinct ancestor of vIMinus and its right neighbor
 	 *         v
 	 */
-	private TreeNode ancestor(TreeNode vIMinus, TreeNode v, TreeNode parentOfV,
+	private TreeNode ancestor(TreeNode vIMinus, @SuppressWarnings("unused") TreeNode v, TreeNode parentOfV,
 			TreeNode defaultAncestor) {
 		TreeNode ancestor = getAncestor(vIMinus);
 

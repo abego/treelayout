@@ -37,7 +37,7 @@ public class AbegoTreeLayoutForNetbeansDemo {
 		private LayerWidget mainLayer;
 		private LayerWidget connectionLayer;
 
-		public TreeScene(String root) {
+		public TreeScene(@SuppressWarnings("unused") String root) {
 			mainLayer = new LayerWidget(this);
 			connectionLayer = new LayerWidget(this);
 			addChild(mainLayer);

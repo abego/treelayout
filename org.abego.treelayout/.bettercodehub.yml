@@ -1,0 +1,7 @@
+exclude:
+- /org.abego.treelayout.demo/src/main/java/org/abego/treelayout/demo/.*
+- /org.abego.treelayout.netbeans.demo/src/main/java/org/abego/treelayout/netbeans/demo/AbegoTreeLayoutForNetbeansDemo.java
+component_depth: 1
+languages:
+- java
+- script

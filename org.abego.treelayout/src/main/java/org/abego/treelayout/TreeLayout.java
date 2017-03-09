@@ -234,7 +234,6 @@ public class TreeLayout<TreeNode> {
 		}
 
 		double size = getNodeThickness(node);
-		// size = nodeExtentProvider.getHeight(node);
 		if (oldSize < size) {
 			sizeOfLevel.set(level, size);
 		}

@@ -1,3 +1,5 @@
 /.svn/
 org.abego.treelayout.netbeans.demo/nbproject/private
 org.abego.treelayout/nbproject/private
+*.iml
+org.abego.treelayout/.idea

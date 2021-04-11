@@ -61,7 +61,7 @@ public class SampleTreeFactory {
 		tree.addChild(n2, n2_1);
 		return tree;
 	}
-	
+
 	/**
 	 * @return a "Sample" tree with {@link TextInBox} items as nodes.
 	 */
@@ -79,8 +79,8 @@ public class SampleTreeFactory {
 		TextInBox n1_6_2 = new TextInBox("i", 20, 20);
 		TextInBox n1_6_3 = new TextInBox(";", 20, 20);
 		TextInBox n1_7 = new TextInBox("}", 20, 20);
-		         
-		         
+
+
 		DefaultTreeForTreeLayout<TextInBox> tree = new DefaultTreeForTreeLayout<TextInBox>(
 				root);
 		tree.addChild(root, n1);
@@ -97,4 +97,71 @@ public class SampleTreeFactory {
 		tree.addChild(n1, n1_7);
 		return tree;
 	}
+
+	public static TreeForTreeLayout<TextInBox> createSemanticTableaux() {
+		TextInBox root = new TextInBox(""+
+				"((A -> B) & (B -> A))\n"+
+				"(A -> B)\n"+
+				"(B -> A)",
+				140, 52);
+		TextInBox n1_1_1 = new TextInBox("~A", 30, 20);
+		TextInBox n1_1_2 = new TextInBox("B", 30, 20);
+		TextInBox n1_1_1_1 = new TextInBox(""+
+				"~B\n" +
+				"OPEN", 44, 35);
+		TextInBox n1_1_1_2 = new TextInBox(""+
+				"A\n" +
+				"X", 30, 35);
+		TextInBox n1_1_2_1 = new TextInBox(""+
+				"~B\n" +
+				"X", 30, 35);
+		TextInBox n1_1_2_2 = new TextInBox(""+
+				"A\n" +
+				"OPEN", 44, 35);
+
+
+		DefaultTreeForTreeLayout<TextInBox> tree = new DefaultTreeForTreeLayout<TextInBox>(
+				root);
+		tree.addChild(root, n1_1_1);
+		tree.addChild(root, n1_1_2);
+		tree.addChild(n1_1_1, n1_1_1_1);
+		tree.addChild(n1_1_1, n1_1_1_2);
+		tree.addChild(n1_1_2, n1_1_2_1);
+		tree.addChild(n1_1_2, n1_1_2_2);
+		return tree;
+	}
+
+	public static TreeForTreeLayout<TextInBox> createSemanticTableaux2() {
+		TextInBox root = new TextInBox("((A -> B) & (B -> A))", 140, 20);
+		TextInBox n1 = new TextInBox("(A -> B)", 65, 20);
+		TextInBox n1_1 = new TextInBox("(B -> A)", 65, 20);
+		TextInBox n1_1_1 = new TextInBox("~A", 30, 20);
+		TextInBox n1_1_2 = new TextInBox("B", 30, 20);
+		TextInBox n1_1_1_1 = new TextInBox("~B", 30, 20);
+		TextInBox n1_1_1_2 = new TextInBox("A", 30, 20);
+		TextInBox n1_1_2_1 = new TextInBox("~B", 30, 20);
+		TextInBox n1_1_2_2 = new TextInBox("A", 30, 20);
+		TextInBox n1_1_1_1_1 = new TextInBox("OPEN", 44, 20);
+		TextInBox n1_1_1_2_1 = new TextInBox("X", 20, 20);
+		TextInBox n1_1_2_1_1 = new TextInBox("X", 20, 20);
+		TextInBox n1_1_2_2_1 = new TextInBox("OPEN", 44, 20);
+
+
+		DefaultTreeForTreeLayout<TextInBox> tree = new DefaultTreeForTreeLayout<TextInBox>(
+				root);
+		tree.addChild(root, n1);
+		tree.addChild(n1, n1_1);
+		tree.addChild(n1_1, n1_1_1);
+		tree.addChild(n1_1, n1_1_2);
+		tree.addChild(n1_1_1, n1_1_1_1);
+		tree.addChild(n1_1_1, n1_1_1_2);
+		tree.addChild(n1_1_2, n1_1_2_1);
+		tree.addChild(n1_1_2, n1_1_2_2);
+		tree.addChild(n1_1_1_1, n1_1_1_1_1);
+		tree.addChild(n1_1_1_2, n1_1_1_2_1);
+		tree.addChild(n1_1_2_1, n1_1_2_1_1);
+		tree.addChild(n1_1_2_2,n1_1_2_2_1);
+		return tree;
+	}
+
 }

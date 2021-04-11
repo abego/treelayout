@@ -57,7 +57,6 @@
         <osgi.embed />
         <osgi.failok>false</osgi.failok>
         <osgi.nouses>false</osgi.nouses>
-        <osgi.versionPolicy>${range;[===,=+);${@}}</osgi.versionPolicy>
         <osgi.private>
             ${bundle.namespace}.internal.*
         </osgi.private>
@@ -87,7 +86,8 @@
                             <Private-Package>${osgi.private}</Private-Package>
                             <Embed-Dependency>${osgi.embed}</Embed-Dependency>
                             <_nouses>${osgi.nouses}</_nouses>
-                            <_versionpolicy>${osgi.versionPolicy}</_versionpolicy>
+                            <!--suppress UnresolvedMavenProperty -->
+                            <_versionpolicy>${range;[===,=+);${@}}</_versionpolicy>
                             <_failok>${osgi.failok}</_failok>
                         </instructions>
                     </configuration>
@@ -100,8 +100,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
 

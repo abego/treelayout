@@ -71,7 +71,11 @@ public class SwingDemo {
 
 	private static TreeForTreeLayout<TextInBox> getSampleTree(String treeName) {
 		TreeForTreeLayout<TextInBox> tree;
-		if (treeName.equals("2")) {
+		if (treeName.equals("semtab")) {
+			tree = SampleTreeFactory.createSemanticTableaux();
+		} else if (treeName.equals("semtab2")) {
+			tree = SampleTreeFactory.createSemanticTableaux2();
+		} else if (treeName.equals("2")) {
 			tree = SampleTreeFactory.createSampleTree2();
 		} else if (treeName.equals("")) {
 			tree = SampleTreeFactory.createSampleTree();
@@ -91,10 +95,17 @@ public class SwingDemo {
 	public static void main(String[] args) {
 		// get the sample tree
 		String treeName = (args.length > 0) ? args[0] : "";
+		boolean boxVisible = true;
+
+		for (String s: args) {
+			if (s.equalsIgnoreCase("--nobox")) {
+				boxVisible = false;
+			}
+		}
 		TreeForTreeLayout<TextInBox> tree = getSampleTree(treeName);
 				
 		// setup the tree layout configuration
-		double gapBetweenLevels = 50;
+		double gapBetweenLevels = treeName.startsWith("semtab") ? 15 : 50;
 		double gapBetweenNodes = 10;
 		DefaultConfiguration<TextInBox> configuration = new DefaultConfiguration<TextInBox>(
 				gapBetweenLevels, gapBetweenNodes);
@@ -108,6 +119,7 @@ public class SwingDemo {
 
 		// Create a panel that draws the nodes and edges and show the panel
 		TextInBoxTreePane panel = new TextInBoxTreePane(treeLayout);
+		panel.setBoxVisible(boxVisible);
 		showInDialog(panel);
 	}
 }

@@ -48,6 +48,7 @@ import org.abego.treelayout.demo.TextInBox;
  */
 public class TextInBoxTreePane extends JComponent {
 	private final TreeLayout<TextInBox> treeLayout;
+	private boolean boxVisible = true;
 
 	private TreeForTreeLayout<TextInBox> getTree() {
 		return treeLayout.getTree();
@@ -74,6 +75,14 @@ public class TextInBoxTreePane extends JComponent {
 		setPreferredSize(size);
 	}
 
+	public boolean isBoxVisible() {
+		return boxVisible;
+	}
+
+	public void setBoxVisible(boolean boxVisible) {
+		this.boxVisible = boxVisible;
+	}
+
 	// -------------------------------------------------------------------
 	// painting
 
@@ -98,23 +107,30 @@ public class TextInBoxTreePane extends JComponent {
 	}
 
 	private void paintBox(Graphics g, TextInBox textInBox) {
-		// draw the box in the background
-		g.setColor(BOX_COLOR);
 		Rectangle2D.Double box = getBoundsOfNode(textInBox);
-		g.fillRoundRect((int) box.x, (int) box.y, (int) box.width - 1,
-				(int) box.height - 1, ARC_SIZE, ARC_SIZE);
-		g.setColor(BORDER_COLOR);
-		g.drawRoundRect((int) box.x, (int) box.y, (int) box.width - 1,
-				(int) box.height - 1, ARC_SIZE, ARC_SIZE);
+		if(isBoxVisible()) {
+			// draw the box in the background
+			g.setColor(BOX_COLOR);
+			g.fillRoundRect((int) box.x, (int) box.y, (int) box.width - 1,
+					(int) box.height - 1, ARC_SIZE, ARC_SIZE);
+			g.setColor(BORDER_COLOR);
+			g.drawRoundRect((int) box.x, (int) box.y, (int) box.width - 1,
+					(int) box.height - 1, ARC_SIZE, ARC_SIZE);
+		} else {
+			g.setColor(getBackground());
+			g.fillRect((int) box.x, (int) box.y, (int) box.width - 1,(int) box.height - 1);
+		}
 
 		// draw the text on top of the box (possibly multiple lines)
 		g.setColor(TEXT_COLOR);
 		String[] lines = textInBox.text.split("\n");
 		FontMetrics m = getFontMetrics(getFont());
-		int x = (int) box.x + ARC_SIZE / 2;
+		int centerX = (int) box.getCenterX();
 		int y = (int) box.y + m.getAscent() + m.getLeading() + 1;
-		for (int i = 0; i < lines.length; i++) {
-			g.drawString(lines[i], x, y);
+		for (String line : lines) {
+			Rectangle2D r = m.getStringBounds(line, g);
+			int x = centerX - (int) (r.getWidth() / 2);
+			g.drawString(line, x, y);
 			y += m.getHeight();
 		}
 	}
